@@ -1,0 +1,5 @@
+export enum TagCategory {
+  MAS_AMBIENTES = 'MAS_AMBIENTES',
+  SERVICIOS = 'SERVICIOS',
+  EXTRAS = 'EXTRAS'
+}

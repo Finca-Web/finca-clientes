@@ -1,0 +1,28 @@
+.custom-toolbar {
+  font-family: 'Roboto', sans-serif;
+  font-size: 32px;
+  height: 100px;
+  background-color: #00A881;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.example-icon {
+  margin-right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: transparent;
+  color: #000000;
+  border: 3px solid #000000;
+}
+
+.example-icon mat-icon {
+  color: #000000;
+}
