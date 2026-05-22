@@ -1,28 +1,71 @@
+/* 1. IMPORTACIÓN DESDE GOOGLE FONTS (Pesos 400 y 700) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* 2. ESTILOS DEL HEADER */
 .custom-toolbar {
-  font-family: 'Roboto', sans-serif;
-  font-size: 32px;
-  height: 100px;
-  background-color: #00A881;
-  color: white;
+  padding: 0;
+  height: 120px;
   display: flex;
   align-items: center;
-  padding: 0 16px;
+  background-color: #E6E5D3;
 }
 
-.example-spacer {
-  flex: 1 1 auto;
+.navbar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 70px;
+  background-color: #E6E5D3;
+  box-sizing: border-box;
+
+  /* Todo el contenido de la barra de navegación usará Montserrat */
+  font-family: 'Montserrat', sans-serif;
 }
 
-.example-icon {
-  margin-right: 20px;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background-color: transparent;
-  color: #000000;
-  border: 3px solid #000000;
+.logo-container {
+  display: flex;
+  align-items: center;
 }
 
-.example-icon mat-icon {
-  color: #000000;
+.logo {
+  width: 190px;
+  object-fit: contain;
+}
+
+.logo-placeholder {
+  font-size: 22px;
+  font-weight: 400; /* Regular */
+  color: #00573F;
+  padding: 6px 12px;
+  border: 2px solid #00573F;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+}
+
+.nav-links {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-left: 40px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700; /* Bold */
+  color: #00573F;
+  transition: opacity 0.3s ease;
+}
+
+.nav-links a:hover {
+  opacity: 0.7;
+}
+
+.divider {
+  font-size: 20px;
+  font-weight: 700; /* Bold */
+  color: #00573F;
 }

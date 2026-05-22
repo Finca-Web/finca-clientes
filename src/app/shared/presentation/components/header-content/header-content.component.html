@@ -1,12 +1,27 @@
 <mat-toolbar class="custom-toolbar">
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Ir al dashboard"
-    [routerLink]="['/dashboard']"
-  >
-    <mat-icon>home</mat-icon>
-  </button>
-  <span>Finca Verde - Panel de Control</span>
-  <span class="example-spacer"></span>
+  <header class="navbar">
+
+    <div class="logo-container">
+      <div class="logo-placeholder" aria-label="Logo">Logo</div>
+    </div>
+
+    <nav class="nav-links">
+
+      <a routerLink="/home">Home</a>
+
+      <span class="divider">|</span>
+
+      <a routerLink="/buy">Comprar</a>
+
+      <span class="divider">|</span>
+
+      <a routerLink="/rent">Alquilar</a>
+
+      <span class="divider">|</span>
+
+      <a routerLink="/about">Quienes somos</a>
+
+    </nav>
+
+  </header>
 </mat-toolbar>
