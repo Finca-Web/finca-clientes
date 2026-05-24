@@ -1,7 +1,5 @@
-/* 1. IMPORTACIÓN DESDE GOOGLE FONTS (Pesos 400 y 700) */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-/* 2. ESTILOS DEL HEADER */
 .custom-toolbar {
   padding: 0;
   height: 120px;
@@ -19,8 +17,6 @@
   padding: 0 70px;
   background-color: #E6E5D3;
   box-sizing: border-box;
-
-  /* Todo el contenido de la barra de navegación usará Montserrat */
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -30,18 +26,9 @@
 }
 
 .logo {
-  width: 190px;
+  width: 250px;
+  height: auto;
   object-fit: contain;
-}
-
-.logo-placeholder {
-  font-size: 22px;
-  font-weight: 400; /* Regular */
-  color: #00573F;
-  padding: 6px 12px;
-  border: 2px solid #00573F;
-  border-radius: 6px;
-  letter-spacing: 0.5px;
 }
 
 .nav-links {
@@ -55,17 +42,59 @@
 .nav-links a {
   text-decoration: none;
   font-size: 20px;
-  font-weight: 700; /* Bold */
+  font-weight: 700;
   color: #00573F;
   transition: opacity 0.3s ease;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1);
 }
 
 .nav-links a:hover {
-  opacity: 0.7;
+  opacity: 1;
 }
 
 .divider {
   font-size: 20px;
-  font-weight: 700; /* Bold */
+  font-weight: 700;
   color: #00573F;
+}
+
+.whatsapp-link {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #25D366;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  margin-left: 16px;
+}
+
+.whatsapp-link svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+.whatsapp-link:hover {
+  opacity: 0.9;
 }

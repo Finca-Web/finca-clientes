@@ -1,0 +1,91 @@
+<app-header-content></app-header-content>
+<section class="property-detail">
+  <h1 class="property-title">{{ title }}</h1>
+
+  <div class="property-gallery" aria-label="Galeria de imagenes">
+    <button type="button" class="gallery-nav prev" aria-label="Imagen anterior" (click)="showPrevious()">
+      <span aria-hidden="true">&lt;</span>
+    </button>
+
+    <img
+      class="gallery-image"
+      [class.is-transitioning]="isTransitioning"
+      [class.slide-left]="isTransitioning && transitionDirection === 'left'"
+      [class.slide-right]="isTransitioning && transitionDirection === 'right'"
+      [src]="currentImageUrl"
+      [alt]="title"
+    />
+
+    <button type="button" class="gallery-nav next" aria-label="Imagen siguiente" (click)="showNext()">
+      <span aria-hidden="true">&gt;</span>
+    </button>
+  </div>
+
+  <div class="stats-row" aria-label="Resumen de la propiedad">
+    <div class="stat-card icon-card">
+      <span class="stat-label">AREA TOTAL</span>
+      <div class="stat-icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" focusable="false">
+          <rect x="10" y="10" width="44" height="44" rx="8" fill="none" stroke="currentColor" stroke-width="4"/>
+          <text x="32" y="38" text-anchor="middle" font-size="18" font-family="Montserrat, sans-serif" fill="currentColor">M2</text>
+        </svg>
+      </div>
+      <span class="stat-value">{{ property?.totalArea ?? 0 }} M2</span>
+    </div>
+    <div class="stat-card icon-card">
+      <span class="stat-label">AREA CONSTRUIDA</span>
+      <div class="stat-icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" focusable="false">
+          <path d="M12 30L32 14l20 16" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 28v22h28V28" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M28 50V38h8v12" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="stat-value">{{ property?.builtArea ?? 0 }} M2</span>
+    </div>
+    <div class="stat-card icon-card">
+      <span class="stat-label">DORMITORIOS</span>
+      <div class="stat-icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" focusable="false">
+          <rect x="10" y="30" width="44" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="4"/>
+          <rect x="14" y="24" width="14" height="8" rx="3" fill="none" stroke="currentColor" stroke-width="4"/>
+          <rect x="30" y="24" width="20" height="8" rx="3" fill="none" stroke="currentColor" stroke-width="4"/>
+          <path d="M10 44v8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <path d="M54 44v8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="stat-value">{{ property?.bedrooms ?? 0 }}</span>
+    </div>
+    <div class="stat-card icon-card">
+      <span class="stat-label">BAÑOS</span>
+      <div class="stat-icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" focusable="false">
+          <path d="M18 24h28v12a12 12 0 0 1-12 12h-4a12 12 0 0 1-12-12V24z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M22 24v-6a6 6 0 0 1 6-6h8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <path d="M16 24h32" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <path d="M22 48v4" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <path d="M42 48v4" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="stat-value">{{ property?.bathrooms ?? 0 }}</span>
+    </div>
+    <div class="stat-card icon-card">
+      <span class="stat-label">ESTACIONAMIENTOS</span>
+      <div class="stat-icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" focusable="false">
+          <path d="M14 38l6-16h24l6 16" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="10" y="38" width="44" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="4"/>
+          <circle cx="20" cy="50" r="5" fill="none" stroke="currentColor" stroke-width="4"/>
+          <circle cx="44" cy="50" r="5" fill="none" stroke="currentColor" stroke-width="4"/>
+        </svg>
+      </div>
+      <span class="stat-value">{{ property?.parkings ?? 0 }}</span>
+    </div>
+  </div>
+
+  <section class="property-description">
+    <h2 class="description-title">Descripcion de la propiedad</h2>
+    <p class="description-text">{{ property?.description ?? '' }}</p>
+  </section>
+</section>
+<app-footer-content></app-footer-content>

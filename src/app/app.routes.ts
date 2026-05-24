@@ -14,4 +14,11 @@ export const routes: Routes = [
         .then(m => m.HomeComponentComponent),
     title: `${baseTitle} - Home`
   },
+  {
+    path: 'properties/:id',
+    loadComponent: () =>
+      import('./properties/presentation/components/property-detail/property-detail.component')
+        .then(m => m.PropertyDetailComponent),
+    title: `${baseTitle} - Propiedad`
+  },
 ];
