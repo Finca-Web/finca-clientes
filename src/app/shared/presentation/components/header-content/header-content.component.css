@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 .custom-toolbar {
   padding: 0;
@@ -42,7 +42,7 @@
 .nav-links a {
   text-decoration: none;
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 600;
   color: #00573F;
   transition: opacity 0.3s ease;
   position: relative;
@@ -77,24 +77,28 @@
 }
 
 .whatsapp-link {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background-color: #25D366;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background-color: transparent;
   color: #ffffff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   margin-left: 16px;
+  overflow: visible;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.whatsapp-link svg {
-  width: 28px;
-  height: 28px;
+.whatsapp-icon {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
   display: block;
 }
 
 .whatsapp-link:hover {
-  opacity: 0.9;
+  transform: translateY(-4px);
+  opacity: 0.8;
 }
