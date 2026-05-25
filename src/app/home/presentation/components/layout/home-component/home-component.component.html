@@ -1,0 +1,92 @@
+<app-header-content></app-header-content>
+
+<section class="hero-section">
+  <div class="hero-content">
+    <h1 class="hero-title">
+      <span class="font-regular">Más que propiedades</span><br>
+      <span class="font-bold">Encuentra tu futuro hogar</span>
+    </h1>
+
+    <div class="search-bar">
+      <div class="search-pill">
+        <span>Venta</span>
+        <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L7 7L13 1" stroke="#00573F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="search-pill">
+        <span>Casa</span>
+        <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L7 7L13 1" stroke="#00573F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="search-pill input-pill">
+        <span>Distrito</span>
+      </div>
+
+      <button class="search-button">
+        Empezar Busqueda
+      </button>
+    </div>
+  </div>
+
+  <div class="bottom-gradient"></div>
+</section>
+
+<section class="properties-section">
+  <div class="properties-container">
+
+    <div class="properties-header">
+      <h2 class="properties-title">
+        Donde las mejores <span class="font-bold">propiedades</span><br>
+        encuentran a sus <span class="font-bold">compradores ideales</span>
+      </h2>
+      <p class="properties-subtitle">
+        Descubre las propiedades más consultadas del momento:<br>
+        espacios que destacan por su ubicación, diseño y alto interés en el mercado
+      </p>
+    </div>
+
+    <div class="properties-grid">
+      <div class="cards-grid">
+        @for (property of properties; track property.id) {
+          <mat-card class="property-card">
+            <div class="image-wrapper">
+              <img
+                [src]="getCoverImage(property)"
+                [alt]="property.title"
+              />
+
+              <div class="overlay">
+                <div class="overlay-top">
+                  <a
+                    class="read-more"
+                    [routerLink]="['/properties', property.id]"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Leer mas"
+                  >
+                    <span>Leer mas</span>
+                    <mat-icon>arrow_forward</mat-icon>
+                  </a>
+                </div>
+
+                <div class="overlay-bottom">
+                  <h3>{{ property.title }}</h3>
+                  <p>
+                    {{ property.bedrooms ?? 0 }} habitaciones | {{ property.bathrooms ?? 0 }} baños | {{ property.parkings ?? 0 }} cocheras
+                  </p>
+                </div>
+              </div>
+            </div>
+          </mat-card>
+        }
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<app-footer-content></app-footer-content>

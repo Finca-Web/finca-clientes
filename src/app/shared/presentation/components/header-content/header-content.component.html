@@ -1,12 +1,36 @@
 <mat-toolbar class="custom-toolbar">
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Ir al dashboard"
-    [routerLink]="['/dashboard']"
-  >
-    <mat-icon>home</mat-icon>
-  </button>
-  <span>Finca Verde - Panel de Control</span>
-  <span class="example-spacer"></span>
+  <header class="navbar">
+
+    <div class="logo-container">
+      <img src="/assets/Logo.png" alt="Logo de la Inmobiliaria" class="logo">
+    </div>
+
+    <nav class="nav-links">
+
+      <a routerLink="/home">Home</a>
+
+      <span class="divider">|</span>
+
+      <a routerLink="/buy">Comprar</a>
+
+      <span class="divider">|</span>
+
+      <a routerLink="/rent">Alquilar</a>
+
+      <span class="divider">|</span>
+
+      <a routerLink="/about">Quienes somos</a>
+
+    </nav>
+
+    <a
+      class="whatsapp-link"
+      href="https://wa.me/51923529731"
+      target="_blank"
+      rel="noopener"
+      aria-label="WhatsApp"
+    >
+      <img src="/assets/WspLogo.png" alt="WhatsApp" class="whatsapp-icon" />
+    </a>
+  </header>
 </mat-toolbar>
