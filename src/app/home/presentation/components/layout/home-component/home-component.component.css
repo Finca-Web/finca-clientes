@@ -172,13 +172,20 @@
   width: 100%;
 }
 
+.cards-carousel {
+  position: static;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .cards-grid {
   display: flex;
   gap: 1rem;
   margin-top: 0.8rem;
   align-items: stretch;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
+  overflow: hidden;
+  flex: 1 1 auto;
 }
 
 .property-card {
@@ -194,8 +201,13 @@
     width 0.3s ease;
 }
 
-.property-card:hover {
+.property-card.active-card {
   width: 520px;
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+}
+
+.property-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
 }
@@ -313,8 +325,16 @@
     width: 170px;
   }
 
-  .property-card:hover {
+  .property-card.active-card {
     width: 420px;
+  }
+
+  .cards-carousel {
+    align-items: stretch;
+  }
+
+  .cards-nav {
+    align-self: center;
   }
 }
 
@@ -327,7 +347,78 @@
     width: 100%;
   }
 
-  .property-card:hover {
+  .property-card.active-card {
     width: 100%;
   }
+
+  .cards-carousel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cards-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    bottom: 20px;
+  }
+
+  .cards-nav.prev {
+    left: 20px;
+  }
+
+  .cards-nav.next {
+    right: 20px;
+  }
+}
+
+.property-card.preview-card {
+  opacity: 0.45;
+  pointer-events: none;
+  transform: none;
+  box-shadow: none;
+}
+
+.property-card.preview-card .overlay {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.3)
+  );
+}
+
+.cards-nav {
+  position: absolute;
+  bottom: 28px;
+  z-index: 3;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 87, 63, 0.85);
+  color: #ffffff;
+  font-size: 22px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+}
+
+.cards-nav:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.cards-nav:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.cards-nav.prev {
+  left: 28px;
+}
+
+.cards-nav.next {
+  right: 28px;
 }

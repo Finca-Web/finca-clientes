@@ -50,39 +50,67 @@
     </div>
 
     <div class="properties-grid">
-      <div class="cards-grid">
-        @for (property of properties; track property.id) {
-          <mat-card class="property-card">
-            <div class="image-wrapper">
-              <img
-                [src]="getCoverImage(property)"
-                [alt]="property.title"
-              />
+      <div class="cards-carousel">
+        <button
+          type="button"
+          class="cards-nav prev"
+          aria-label="Anterior"
+          (click)="showPreviousCards()"
+          [disabled]="!canPrevious"
+        >
+          <span aria-hidden="true">&lt;</span>
+        </button>
 
-              <div class="overlay">
-                <div class="overlay-top">
-                  <a
-                    class="read-more"
-                    [routerLink]="['/properties', property.id]"
-                    target="_blank"
-                    rel="noopener"
-                    aria-label="Leer mas"
-                  >
-                    <span>Leer mas</span>
-                    <mat-icon>arrow_forward</mat-icon>
-                  </a>
-                </div>
+        <div class="cards-grid">
+          @for (property of visibleProperties; track property.id; let idx = $index) {
+            <mat-card
+              class="property-card"
+              [class.preview-card]="isPreviewCard(idx)"
+              [class.active-card]="isActiveCard(idx)"
+              (mouseenter)="setActiveCard(idx)"
+              (mouseleave)="resetActiveCard()"
+            >
+              <div class="image-wrapper">
+                <img
+                  [src]="getCoverImage(property)"
+                  [alt]="property.title"
+                />
 
-                <div class="overlay-bottom">
-                  <h3>{{ property.title }}</h3>
-                  <p>
-                    {{ property.bedrooms ?? 0 }} habitaciones | {{ property.bathrooms ?? 0 }} baños | {{ property.parkings ?? 0 }} cocheras
-                  </p>
+                <div class="overlay">
+                  <div class="overlay-top">
+                    <a
+                      class="read-more"
+                      [routerLink]="['/properties', property.id]"
+                      target="_blank"
+                      rel="noopener"
+                      aria-label="Leer mas"
+                    >
+                      <span>Leer mas</span>
+                      <mat-icon>arrow_forward</mat-icon>
+                    </a>
+                  </div>
+
+                  <div class="overlay-bottom">
+                    <h3>{{ property.title }}</h3>
+                    <p>
+                      {{ property.bedrooms ?? 0 }} habitaciones | {{ property.bathrooms ?? 0 }} baños | {{ property.parkings ?? 0 }} cocheras
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </mat-card>
-        }
+            </mat-card>
+          }
+        </div>
+
+        <button
+          type="button"
+          class="cards-nav next"
+          aria-label="Siguiente"
+          (click)="showNextCards()"
+          [disabled]="!canNext"
+        >
+          <span aria-hidden="true">&gt;</span>
+        </button>
       </div>
     </div>
 
