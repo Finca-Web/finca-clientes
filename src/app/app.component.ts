@@ -10,5 +10,5 @@ import { LayoutComponent } from './shared/presentation/components/layout/layout.
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'finca-frontend';
+  title = 'finca-clientes';
 }

@@ -1,20 +1,17 @@
-/* ========================================== */
-/* ESTILOS DEL FOOTER                         */
-/* ========================================== */
-
 .footer-section {
-  background-color: #00573F; /* Verde oscuro característico */
-  color: #E6E5D3; /* Color crema para el texto */
+  background-color: #00573F;
+  color: #E6E5D3;
   width: 100%;
-  padding: 80px 70px; /* Padding generoso para aprovechar el espacio */
+  padding: 80px 70px;
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
-
-  /* Bordes redondeados superiores como en el mockup */
+  background-image: url('/assets/lineas crema 2.0.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100%;
   border-top-left-radius: 60px;
   border-top-right-radius: 60px;
 
-  /* Margen superior para separarlo de tu contenedor de propiedades */
   margin-top: 60px;
 }
 
@@ -26,7 +23,6 @@
   margin: 0 auto;
 }
 
-/* --- LOGO A LA IZQUIERDA --- */
 .footer-logo-container {
   flex: 1;
   display: flex;
@@ -34,15 +30,14 @@
 }
 
 .footer-logo {
-  width: 300px; /* Tamaño del logo en el footer (más grande que en el header) */
+  width: 300px;
   height: auto;
   object-fit: contain;
 }
 
-/* --- BLOQUES A LA DERECHA --- */
 .footer-info {
   display: flex;
-  gap: 120px; /* Separación amplia entre Redes y Contacto */
+  gap: 120px;
   flex-wrap: wrap;
 }
 
@@ -52,8 +47,8 @@
 }
 
 .footer-block h3 {
-  font-size: 32px; /* Títulos grandes */
-  font-weight: 800; /* Extra bold */
+  font-size: 32px;
+  font-weight: 800;
   margin: 0 0 15px 0;
   color: #E6E5D3;
   letter-spacing: 0.5px;
@@ -66,7 +61,6 @@
   color: #E6E5D3;
 }
 
-/* --- ICONOS DE REDES SOCIALES --- */
 .social-icons {
   display: flex;
   gap: 20px;
@@ -86,6 +80,6 @@
 }
 
 .social-icons svg:hover {
-  transform: translateY(-4px); /* Pequeño salto al pasar el mouse */
+  transform: translateY(-4px);
   opacity: 0.8;
 }

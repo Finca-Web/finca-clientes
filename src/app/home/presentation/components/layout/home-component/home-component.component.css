@@ -118,9 +118,12 @@
   background-color: #FFFFFF;
   width: 100%;
   max-width: 1400px;
-
   min-height: 800px;
 
+  background-image: url('/assets/lineas verdes.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 110%;
   border-radius: 40px;
   padding: 80px 60px;
   box-sizing: border-box;
@@ -136,7 +139,6 @@
   z-index: 2;
 }
 
-/* Título principal */
 .properties-title {
   font-family: 'Montserrat', sans-serif;
   color: #00573F;
@@ -151,7 +153,6 @@
   font-weight: 800;
 }
 
-/* Subtítulo */
 .properties-subtitle {
   font-family: 'Montserrat', sans-serif;
   color: #00573F;

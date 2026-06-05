@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable} from  'rxjs';
 import {PropertyEntity} from '../domain/model/Property.entity';
 import {
   CreatePropertyRequest,
