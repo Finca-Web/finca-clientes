@@ -6,11 +6,15 @@ import { PropertyImageEntity } from '../../../domain/model/PropertyImage.entity'
 import { environment } from '../../../../../environments/environment';
 import {HeaderContentComponent} from '../../../../shared/presentation/components/header-content/header-content.component';
 import {FooterContentComponent} from '../../../../shared/presentation/components/footer-content/footer-content.component';
+import { Tag } from '../../../domain/model/enums/Tag.enum';
+import { TagCategory } from '../../../domain/model/enums/TagCategory.enum';
+import { TagMetadata } from '../../../domain/model/enums/TagMetadata';
+import { CommonModule } from '@angular/common'; // Import CommonModule
 
 @Component({
   selector: 'app-property-detail',
   standalone: true,
-  imports: [HeaderContentComponent, FooterContentComponent],
+  imports: [CommonModule, HeaderContentComponent, FooterContentComponent], // Add CommonModule here
   templateUrl: './property-detail.component.html',
   styleUrl: './property-detail.component.css'
 })
@@ -21,6 +25,7 @@ export class PropertyDetailComponent implements OnInit {
   isTransitioning = false;
   transitionDirection: 'left' | 'right' | null = null;
   property: PropertyEntity | null = null;
+  groupedTags: { category: string; tags: string[] }[] = [];
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -42,8 +47,12 @@ export class PropertyDetailComponent implements OnInit {
         this.title = property.title ?? '';
         this.imageUrls = this.buildImageUrls(property);
         this.currentIndex = 0;
+        this.groupPropertyTags();
+        console.log('Property tags:', this.property.tags);
+        console.log('Grouped tags:', this.groupedTags);
       },
-      error: () => {
+      error: (err) => {
+        console.error('Error fetching property:', err);
         this.property = null;
         this.title = '';
         this.imageUrls = [];
@@ -116,5 +125,43 @@ export class PropertyDetailComponent implements OnInit {
     }
 
     return `${origin}/${trimmed}`;
+  }
+
+  private groupPropertyTags(): void {
+    if (!this.property || !this.property.tags) {
+      this.groupedTags = [];
+      return;
+    }
+
+    const tagsByCategory: { [key: string]: string[] } = {};
+
+    for (const tag of this.property.tags) {
+      const metadata = TagMetadata[tag];
+      if (metadata) {
+        const categoryLabel = this.getCategoryLabel(metadata.category);
+        if (!tagsByCategory[categoryLabel]) {
+          tagsByCategory[categoryLabel] = [];
+        }
+        tagsByCategory[categoryLabel].push(metadata.label);
+      }
+    }
+
+    this.groupedTags = Object.keys(tagsByCategory).map(category => ({
+      category: category,
+      tags: tagsByCategory[category]
+    }));
+  }
+
+  private getCategoryLabel(category: TagCategory): string {
+    switch (category) {
+      case TagCategory.MAS_AMBIENTES:
+        return 'Más Ambientes';
+      case TagCategory.SERVICIOS:
+        return 'Servicios';
+      case TagCategory.EXTRAS:
+        return 'Extras';
+      default:
+        return 'Otros';
+    }
   }
 }

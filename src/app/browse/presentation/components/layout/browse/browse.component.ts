@@ -6,21 +6,36 @@ import { FooterContentComponent } from '../../../../../shared/presentation/compo
 import { PropertiesService } from '../../../../../properties/application/properties.service';
 import { PropertyEntity } from '../../../../../properties/domain/model/Property.entity';
 import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import {environment} from '../../../../../../environments/environment'; // Importante para ngModel
 
 @Component({
   selector: 'app-browse-component',
   standalone: true,
-  imports: [HeaderContentComponent, MatCardModule, MatIconModule, FooterContentComponent, RouterLink],
+  imports: [
+    HeaderContentComponent,
+    MatCardModule,
+    MatIconModule,
+    FooterContentComponent,
+    RouterLink,
+    FormsModule
+  ],
   templateUrl: './browse.component.html',
   styleUrl: './browse.component.css'
 })
 export class BrowseComponent {
   readonly properties: PropertyEntity[] = [];
 
+  // Paginación
   currentPage = 0;
   readonly pageSize = 20;
-
   totalPages = 0;
+
+  filters = {
+    operationType: '',
+    propertyType: '',
+    district: ''
+  };
 
   constructor(private readonly propertiesService: PropertiesService) {
     this.loadProperties();
@@ -35,10 +50,43 @@ export class BrowseComponent {
           this.totalPages = response.totalPages;
         },
         error: () => {
-          this.properties.length
-            = 0;
+          this.properties.length = 0;
         }
       });
+  }
+
+  private readonly assetsBaseUrl = this.getAssetsBaseUrl();
+
+
+  getCoverImage(property: PropertyEntity): string {
+    const cover = property.images?.find((image) => image.cover) ?? property.images?.[0];
+    const filePath = cover?.filePath?.trim();
+
+    if (!filePath) {
+      return 'assets/HomeArt.png';
+    }
+
+    if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
+      return filePath;
+    }
+
+    if (filePath.startsWith('/')) {
+      return `${this.assetsBaseUrl}${filePath}`;
+    }
+
+    return `${this.assetsBaseUrl}/${filePath}`;
+  }
+
+  private getAssetsBaseUrl(): string {
+    const apiUrl = environment.serverBasePath.replace(/\/$/, '');
+    const origin = new URL(apiUrl).origin;
+    return origin;
+  }
+
+
+  onSearch(): void {
+    this.currentPage = 0;
+    this.loadProperties();
   }
 
   nextPage(): void {

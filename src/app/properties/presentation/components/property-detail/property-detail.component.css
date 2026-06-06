@@ -214,3 +214,35 @@
   line-height: 1.6;
   color: #1F1F1F;
 }
+
+.tags-section {
+  margin-top: 28px;
+  margin-left: -200px;
+  margin-right: -200px;
+  padding: 0;
+  background: transparent;
+}
+
+.tag-category-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  color: #006644;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag-item {
+  background-color: #00573F; /* Color del footer */
+  color: #E6E5D3; /* Color de texto del footer */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 20px; /* Rectángulo redondeado */
+  white-space: nowrap;
+}

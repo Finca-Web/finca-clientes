@@ -1,5 +1,99 @@
 <app-header-content></app-header-content>
 
+<section class="browse-filters-section">
+  <div class="filters-container">
+    <h1 class="browse-title">Encuentra tu propiedad ideal</h1>
 
+    <div class="search-bar">
+      <div class="search-pill">
+        <select [(ngModel)]="filters.operationType" class="pill-select" aria-label="Tipo de operación">
+          <option value="" disabled selected>Operación</option>
+          <option value="SALE">Venta</option>
+          <option value="RENT">Alquiler</option>
+        </select>
+        <mat-icon class="select-icon">expand_more</mat-icon>
+      </div>
+
+      <div class="search-pill">
+        <select [(ngModel)]="filters.propertyType" class="pill-select" aria-label="Tipo de propiedad">
+          <option value="" disabled selected>Inmueble</option>
+          <option value="APARTMENT">Departamento</option>
+          <option value="HOUSE">Casa</option>
+          <option value="LAND">Terreno</option>
+          <option value="COMMERCIAL">Comercial</option>
+          <option value="OFFICE">Oficina</option>
+        </select>
+        <mat-icon class="select-icon">expand_more</mat-icon>
+      </div>
+
+      <div class="search-pill input-pill">
+        <select [(ngModel)]="filters.district" class="pill-select" aria-label="Distrito">
+          <option value="" disabled selected>Distrito</option>
+          <option value="MIRAFLORES">Miraflores</option>
+          <option value="SAN_ISIDRO">San Isidro</option>
+          <option value="SANTIAGO_DE_SURCO">Surco</option>
+          <option value="LA_MOLINA">La Molina</option>
+          <option value="SAN_BORJA">San Borja</option>
+          <option value="BARRANCO">Barranco</option>
+        </select>
+        <mat-icon class="select-icon">expand_more</mat-icon>
+      </div>
+
+      <button class="search-button" (click)="onSearch()">Buscar</button>
+
+      <button class="advanced-filters-btn">
+        <mat-icon>tune</mat-icon>
+        Filtros Avanzados
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="browse-results-section">
+  <div class="results-container">
+    <div class="results-header">
+      <p class="results-count">Mostrando resultados para tu búsqueda</p>
+    </div>
+
+    <div class="properties-grid-layout">
+      @for (property of properties; track property.id) {
+        <mat-card class="property-card">
+          <div class="image-wrapper">
+            <img [src]="getCoverImage(property)" [alt]="property.title" />
+            <div class="overlay">
+              <div class="overlay-top">
+                <span class="price-tag">${{ property.priceDollars }}</span>
+              </div>
+              <div class="overlay-bottom">
+                <h3>{{ property.title }}</h3>
+                <p>
+                  {{ property.bedrooms ?? 0 }} hab | {{ property.bathrooms ?? 0 }} baños | {{ property.parkings ?? 0 }} coch
+                </p>
+                <a class="read-more" [routerLink]="['/properties', property.id]">
+                  Ver detalles <mat-icon>arrow_forward</mat-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      }
+
+      @if (properties.length === 0) {
+        <div class="no-results">
+          <mat-icon>search_off</mat-icon>
+          <p>No se encontraron propiedades con esos filtros.</p>
+        </div>
+      }
+    </div>
+
+    @if (totalPages > 1) {
+      <div class="pagination-controls">
+        <button class="page-btn" (click)="previousPage()" [disabled]="currentPage === 0">Anterior</button>
+        <span class="page-info">Página {{ currentPage + 1 }} de {{ totalPages }}</span>
+        <button class="page-btn" (click)="nextPage()" [disabled]="currentPage >= totalPages - 1">Siguiente</button>
+      </div>
+    }
+  </div>
+</section>
 
 <app-footer-content></app-footer-content>
