@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderContentComponent } from '../../../../../shared/presentation/components/header-content/header-content.component';
@@ -7,7 +7,14 @@ import { PropertiesService } from '../../../../../properties/application/propert
 import { PropertyEntity } from '../../../../../properties/domain/model/Property.entity';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import {environment} from '../../../../../../environments/environment'; // Importante para ngModel
+import { environment } from '../../../../../../environments/environment';
+import { PropertySearchParams} from '../../../../../properties/infrastructure/properties-response';
+import {CurrencyPipe} from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import {OperationType} from '../../../../../properties/domain/model/enums/OperationType.enum';
+import {PropertyType} from '../../../../../properties/domain/model/enums/PropertyType.enum';
+import {Department} from '../../../../../properties/domain/model/enums/Department.enum';
+import {District} from '../../../../../properties/domain/model/enums/District.enum';
 
 @Component({
   selector: 'app-browse-component',
@@ -18,45 +25,75 @@ import {environment} from '../../../../../../environments/environment'; // Impor
     MatIconModule,
     FooterContentComponent,
     RouterLink,
-    FormsModule
+    FormsModule,
+    CurrencyPipe
   ],
   templateUrl: './browse.component.html',
   styleUrl: './browse.component.css'
 })
-export class BrowseComponent {
+export class BrowseComponent implements OnInit {
+
   readonly properties: PropertyEntity[] = [];
 
-  // Paginación
-  currentPage = 0;
-  readonly pageSize = 20;
-  totalPages = 0;
-
-  filters = {
-    operationType: '',
-    propertyType: '',
-    district: ''
+  searchParams: PropertySearchParams = {
+    minPriceDollars: undefined,
+    maxPriceDollars: undefined,
+    department: undefined,
+    district: undefined,
+    propertyType: undefined,
+    operationType: undefined,
+    tags: []
   };
 
-  constructor(private readonly propertiesService: PropertiesService) {
-    this.loadProperties();
+  showAdvanced = false;
+
+  constructor(private readonly propertiesService: PropertiesService,
+              private readonly route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+
+    this.route.queryParams.subscribe(params => {
+
+      this.searchParams.operationType =
+        params['operationType'] as OperationType;
+
+      this.searchParams.propertyType =
+        params['propertyType'] as PropertyType;
+
+      this.searchParams.department =
+        params['department'] as Department;
+
+      this.searchParams.district =
+        params['district'] as District;
+
+      this.loadProperties();
+    });
+
   }
 
   loadProperties(): void {
-    this.propertiesService.getPaged(this.currentPage, this.pageSize)
+    // Usamos el método search del servicio pasando los parámetros actuales
+    this.propertiesService.search(this.searchParams)
       .subscribe({
         next: (response) => {
           this.properties.length = 0;
-          this.properties.push(...response.data);
-          this.totalPages = response.totalPages;
+          this.properties.push(...response);
         },
-        error: () => {
+        error: (err) => {
+          console.error('Error al cargar propiedades:', err);
           this.properties.length = 0;
         }
       });
   }
 
-  private readonly assetsBaseUrl = this.getAssetsBaseUrl();
+  onSearch(): void {
+    // Al buscar, reiniciamos el estado (si fuera necesario) y llamamos al endpoint
+    this.loadProperties();
+  }
 
+  // --- Helpers de Imagen (Mantenidos) ---
+  private readonly assetsBaseUrl = this.getAssetsBaseUrl();
 
   getCoverImage(property: PropertyEntity): string {
     const cover = property.images?.find((image) => image.cover) ?? property.images?.[0];
@@ -83,23 +120,20 @@ export class BrowseComponent {
     return origin;
   }
 
+  toggleTag(tag: any): void {
+    if (!this.searchParams.tags) {
+      this.searchParams.tags = [];
+    }
 
-  onSearch(): void {
-    this.currentPage = 0;
-    this.loadProperties();
-  }
-
-  nextPage(): void {
-    if (this.currentPage < this.totalPages - 1) {
-      this.currentPage++;
-      this.loadProperties();
+    const index = this.searchParams.tags.indexOf(tag);
+    if (index > -1) {
+      this.searchParams.tags.splice(index, 1);
+    } else {
+      this.searchParams.tags.push(tag);
     }
   }
 
-  previousPage(): void {
-    if (this.currentPage > 0) {
-      this.currentPage--;
-      this.loadProperties();
-    }
+  isTagSelected(tag: any): boolean {
+    return this.searchParams.tags?.includes(tag) ?? false;
   }
 }
