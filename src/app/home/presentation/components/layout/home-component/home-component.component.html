@@ -8,30 +8,161 @@
     </h1>
 
     <div class="search-bar">
-      <div class="search-pill">
-        <span>Venta</span>
-        <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1L7 7L13 1" stroke="#00573F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+      <div class="dropdown-container">
+        <div
+          class="search-pill"
+          (click)="toggleOperationDropdown()"
+        >
+          <span>{{ operationTypeLabel[operationTypePlaceholder] }}</span>
+
+          <svg width="14" height="8" viewBox="0 0 14 8" fill="none">
+            <path
+              d="M1 1L7 7L13 1"
+              stroke="#00573F"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        @if (isOperationDropdownOpen) {
+          <div class="dropdown-menu">
+            @for (type of operationTypes; track type) {
+              <div
+                class="dropdown-item"
+                (click)="selectOperationType(type)"
+              >
+                {{ operationTypeLabel[type] }}
+              </div>
+            }
+          </div>
+        }
+      </div>
+      <mat-menu
+        #operationMenu="matMenu"
+        panelClass="operation-menu-panel">
+        @for (type of operationTypes; track type) {
+          <button
+            mat-menu-item
+            (click)="selectOperationType(type)"
+          >
+            {{ operationTypeLabel[type] }}
+          </button>}</mat-menu>
+
+      <div class="dropdown-container">
+
+        <div
+          class="search-pill"
+          (click)="togglePropertyDropdown()"
+        >
+          <span>{{ propertyTypeLabel[propertyTypePlaceholder] }}</span>
+
+          <svg width="14" height="8" viewBox="0 0 14 8" fill="none">
+            <path
+              d="M1 1L7 7L13 1"
+              stroke="#00573F"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        @if (isPropertyDropdownOpen) {
+          <div class="dropdown-menu">
+            @for (type of propertyTypes; track type) {
+              <div
+                class="dropdown-item"
+                (click)="selectPropertyType(type)"
+              >
+                {{ propertyTypeLabel[type] }}
+              </div>
+            }
+          </div>
+        }
+
       </div>
 
-      <div class="search-pill">
-        <span>Casa</span>
-        <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1L7 7L13 1" stroke="#00573F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+      <div class="dropdown-container">
+
+        <div
+          class="search-pill"
+          (click)="toggleDepartmentDropdown()"
+        >
+          <span>{{ departmentLabel[departmentPlaceholder] }}</span>
+
+          <svg width="14" height="8" viewBox="0 0 14 8" fill="none">
+            <path
+              d="M1 1L7 7L13 1"
+              stroke="#00573F"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        @if (isDepartmentDropdownOpen) {
+          <div class="dropdown-menu">
+            @for (department of departments; track department) {
+              <div
+                class="dropdown-item"
+                (click)="selectDepartment(department)"
+              >
+                {{ departmentLabel[department] }}
+              </div>
+            }
+          </div>
+        }
+
       </div>
 
-      <div class="search-pill input-pill">
-        <span>Distrito</span>
-      </div>
 
-      <button class="search-button">
-        Empezar Busqueda
+      <div class="dropdown-container">
+
+        <div
+          class="search-pill"
+          (click)="toggleDistrictDropdown()"
+        >
+    <span>
+      {{
+        districtPlaceholder
+          ? districtLabel[districtPlaceholder]
+          : 'Distrito'
+      }}
+    </span>
+
+          <svg width="14" height="8" viewBox="0 0 14 8" fill="none">
+            <path
+              d="M1 1L7 7L13 1"
+              stroke="#00573F"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        @if (isDistrictDropdownOpen) {
+          <div class="dropdown-menu">
+            @for (district of districts; track district) {
+              <div
+                class="dropdown-item"
+                (click)="selectDistrict(district)"
+              >
+                {{ districtLabel[district] }}
+              </div>
+            }
+          </div>
+        }
+
+      </div>
+      <button
+        class="search-button"
+        (click)="searchProperties()"
+        >
+        Empezar Búsqueda
       </button>
+
     </div>
   </div>
-
   <div class="bottom-gradient"></div>
 </section>
 
@@ -50,39 +181,67 @@
     </div>
 
     <div class="properties-grid">
-      <div class="cards-grid">
-        @for (property of properties; track property.id) {
-          <mat-card class="property-card">
-            <div class="image-wrapper">
-              <img
-                [src]="getCoverImage(property)"
-                [alt]="property.title"
-              />
+      <div class="cards-carousel">
+        <button
+          type="button"
+          class="cards-nav prev"
+          aria-label="Anterior"
+          (click)="showPreviousCards()"
+          [disabled]="!canPrevious"
+        >
+          <span aria-hidden="true">&lt;</span>
+        </button>
 
-              <div class="overlay">
-                <div class="overlay-top">
-                  <a
-                    class="read-more"
-                    [routerLink]="['/properties', property.id]"
-                    target="_blank"
-                    rel="noopener"
-                    aria-label="Leer mas"
-                  >
-                    <span>Leer mas</span>
-                    <mat-icon>arrow_forward</mat-icon>
-                  </a>
-                </div>
+        <div class="cards-grid">
+          @for (property of visibleProperties; track property.id; let idx = $index) {
+            <mat-card
+              class="property-card"
+              [class.preview-card]="isPreviewCard(idx)"
+              [class.active-card]="isActiveCard(idx)"
+              (mouseenter)="setActiveCard(idx)"
+              (mouseleave)="resetActiveCard()"
+            >
+              <div class="image-wrapper">
+                <img
+                  [src]="getCoverImage(property)"
+                  [alt]="property.title"
+                />
 
-                <div class="overlay-bottom">
-                  <h3>{{ property.title }}</h3>
-                  <p>
-                    {{ property.bedrooms ?? 0 }} habitaciones | {{ property.bathrooms ?? 0 }} baños | {{ property.parkings ?? 0 }} cocheras
-                  </p>
+                <div class="overlay">
+                  <div class="overlay-top">
+                    <a
+                      class="read-more"
+                      [routerLink]="['/properties', property.id]"
+                      target="_blank"
+                      rel="noopener"
+                      aria-label="Leer mas"
+                    >
+                      <span>Leer mas</span>
+                      <mat-icon>arrow_forward</mat-icon>
+                    </a>
+                  </div>
+
+                  <div class="overlay-bottom">
+                    <h3>{{ property.title }}</h3>
+                    <p>
+                      {{ property.bedrooms ?? 0 }} habitaciones | {{ property.bathrooms ?? 0 }} baños | {{ property.parkings ?? 0 }} cocheras
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </mat-card>
-        }
+            </mat-card>
+          }
+        </div>
+
+        <button
+          type="button"
+          class="cards-nav next"
+          aria-label="Siguiente"
+          (click)="showNextCards()"
+          [disabled]="!canNext"
+        >
+          <span aria-hidden="true">&gt;</span>
+        </button>
       </div>
     </div>
 

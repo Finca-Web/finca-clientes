@@ -12,7 +12,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./home/presentation/components/layout/home-component/home-component.component')
         .then(m => m.HomeComponentComponent),
-    title: `${baseTitle} - Home`
+    title: `${baseTitle} - Inicio`
   },
   {
     path: 'properties/:id',
@@ -21,4 +21,12 @@ export const routes: Routes = [
         .then(m => m.PropertyDetailComponent),
     title: `${baseTitle} - Propiedad`
   },
+
+  {
+    path: 'browse',
+    loadComponent: () =>
+      import('./browse/presentation/components/layout/browse/browse.component')
+         .then(m => m.BrowseComponent),
+    title: `${baseTitle} - Catalogo`
+  }
 ];

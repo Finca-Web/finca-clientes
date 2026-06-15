@@ -1,8 +1,18 @@
 <app-header-content></app-header-content>
 <section class="property-detail">
-  <h1 class="property-title">{{ title }}</h1>
+  <div class="property-title-card">
+    <h1 class="property-title">{{ title }}</h1>
+    <p class="property-price">
+      $ {{ property?.priceDollars ?? 0 }} USD
+      @if (property?.priceSoles != null) { | S/. {{ property?.priceSoles }} PEN}
+    </p>
+  </div>
 
-  <div class="property-gallery" aria-label="Galeria de imagenes">
+  <div class="property-gallery" aria-label="Galería de imágenes">
+    <div class="gallery-badge">
+      {{ property?.operationType === 'RENT' ? 'EN ALQUILER' : 'EN VENTA' }}
+    </div>
+
     <button type="button" class="gallery-nav prev" aria-label="Imagen anterior" (click)="showPrevious()">
       <span aria-hidden="true">&lt;</span>
     </button>
@@ -23,17 +33,17 @@
 
   <div class="stats-row" aria-label="Resumen de la propiedad">
     <div class="stat-card icon-card">
-      <span class="stat-label">AREA TOTAL</span>
+      <span class="stat-label">ÁREA TOTAL</span>
       <div class="stat-icon" aria-hidden="true">
         <svg viewBox="0 0 64 64" focusable="false">
           <rect x="10" y="10" width="44" height="44" rx="8" fill="none" stroke="currentColor" stroke-width="4"/>
-          <text x="32" y="38" text-anchor="middle" font-size="18" font-family="Montserrat, sans-serif" fill="currentColor">M2</text>
+          <text x="32" y="38" text-anchor="middle" font-size="18" font-family="Montserrat, sans-serif" fill="currentColor">m2</text>
         </svg>
       </div>
-      <span class="stat-value">{{ property?.totalArea ?? 0 }} M2</span>
+      <span class="stat-value">{{ property?.totalArea ?? 0 }} m2</span>
     </div>
     <div class="stat-card icon-card">
-      <span class="stat-label">AREA CONSTRUIDA</span>
+      <span class="stat-label">ÁREA CONSTRUIDA</span>
       <div class="stat-icon" aria-hidden="true">
         <svg viewBox="0 0 64 64" focusable="false">
           <path d="M12 30L32 14l20 16" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -41,7 +51,7 @@
           <path d="M28 50V38h8v12" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-      <span class="stat-value">{{ property?.builtArea ?? 0 }} M2</span>
+      <span class="stat-value">{{ property?.builtArea ?? 0 }} m2</span>
     </div>
     <div class="stat-card icon-card">
       <span class="stat-label">DORMITORIOS</span>
@@ -84,8 +94,20 @@
   </div>
 
   <section class="property-description">
-    <h2 class="description-title">Descripcion de la propiedad</h2>
+    <h2 class="description-title">Descripción de la propiedad</h2>
     <p class="description-text">{{ property?.description ?? '' }}</p>
   </section>
+
+  <div *ngIf="property && groupedTags.length > 0" class="tags-section">
+    <div *ngFor="let group of groupedTags">
+      <h3 class="tag-category-title">{{ group.category }}</h3>
+      <div class="tag-list">
+        <span *ngFor="let tag of group.tags" class="tag-item">
+          {{ tag }}
+        </span>
+      </div>
+    </div>
+  </div>
+
 </section>
 <app-footer-content></app-footer-content>
