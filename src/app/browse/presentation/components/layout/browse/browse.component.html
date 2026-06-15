@@ -1,0 +1,86 @@
+<app-header-content></app-header-content>
+
+<section class="browse-filters-section">
+  <div class="filters-container">
+    <h2 class="browse-title">Encuentra tu próximo hogar</h2>
+
+    <div class="search-bar">
+      <div class="search-pill">
+        <select class="pill-select" [(ngModel)]="searchParams.operationType">
+          <option [ngValue]="undefined" disabled selected>Operación</option>
+          <option value="SALE">Venta</option>
+          <option value="RENT">Alquiler</option>
+        </select>
+        <mat-icon class="select-icon">keyboard_arrow_down</mat-icon>
+      </div>
+
+      <div class="search-pill">
+        <select class="pill-select" [(ngModel)]="searchParams.propertyType">
+          <option [ngValue]="undefined" disabled selected>Tipo de Propiedad</option>
+          <option value="APARTMENT">Departamento</option>
+          <option value="HOUSE">Casa</option>
+          <option value="LAND">Terreno</option>
+          <option value="OFFICE">Oficina</option>
+        </select>
+        <mat-icon class="select-icon">keyboard_arrow_down</mat-icon>
+      </div>
+
+      <button class="search-button" (click)="onSearch()">Buscar</button>
+
+      <button class="advanced-filters-btn" (click)="showAdvanced = !showAdvanced">
+        <mat-icon>{{ showAdvanced ? 'close' : 'tune' }}</mat-icon>
+        {{ showAdvanced ? 'Cerrar Filtros' : 'Filtros Avanzados' }}
+      </button>
+    </div>
+
+    @if (showAdvanced) {
+      <div class="advanced-panel-container">
+        <div class="filter-group">
+          <label>Precio (USD)</label>
+          <div class="input-row">
+            <input type="number" class="search-pill" [(ngModel)]="searchParams.minPriceDollars" placeholder="Mín ($)">
+            <input type="number" class="search-pill" [(ngModel)]="searchParams.maxPriceDollars" placeholder="Máx ($)">
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label>Características</label>
+          <div class="tags-row">
+            <button class="advanced-filters-btn" [class.active]="isTagSelected('PISCINA')" (click)="toggleTag('PISCINA')">Piscina</button>
+            <button class="advanced-filters-btn" [class.active]="isTagSelected('PET_FRIENDLY')" (click)="toggleTag('PET_FRIENDLY')">Pet Friendly</button>
+            <button class="advanced-filters-btn" [class.active]="isTagSelected('COCHERA')" (click)="toggleTag('COCHERA')">Cochera</button>
+            <button class="advanced-filters-btn" [class.active]="isTagSelected('SEGURIDAD')" (click)="toggleTag('SEGURIDAD')">Seguridad</button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="browse-results-section">
+  <div class="results-container">
+    <div class="properties-grid-layout">
+      @for (property of properties; track property.id) {
+        <mat-card class="property-card" [routerLink]="['/properties', property.id]">
+          <div class="image-wrapper">
+            <img [src]="getCoverImage(property)" [alt]="property.title">
+            <div class="overlay">
+              <div class="price-tag">{{ property.priceDollars | currency:'USD':'symbol':'1.0-0' }}</div>
+              <div class="overlay-bottom">
+                <h3>{{ property.title }}</h3>
+                <p>{{ property.bedrooms }} Hab · {{ property.totalArea }} m²</p>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      } @empty {
+        <div class="no-results">
+          <mat-icon>search_off</mat-icon>
+          <p>No se encontraron propiedades con estos criterios.</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<app-footer-content></app-footer-content>
