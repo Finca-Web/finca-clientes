@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderContentComponent } from '../../../../../shared/presentation/components/header-content/header-content.component';
@@ -8,13 +8,19 @@ import { PropertyEntity } from '../../../../../properties/domain/model/Property.
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { environment } from '../../../../../../environments/environment';
-import { PropertySearchParams} from '../../../../../properties/infrastructure/properties-response';
-import {CurrencyPipe} from '@angular/common';
+import { PropertySearchParams } from '../../../../../properties/infrastructure/properties-response';
+import { CurrencyPipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import {OperationType} from '../../../../../properties/domain/model/enums/OperationType.enum';
-import {PropertyType} from '../../../../../properties/domain/model/enums/PropertyType.enum';
-import {Department} from '../../../../../properties/domain/model/enums/Department.enum';
-import {District} from '../../../../../properties/domain/model/enums/District.enum';
+
+import { OperationType } from '../../../../../properties/domain/model/enums/OperationType.enum';
+import { PropertyType } from '../../../../../properties/domain/model/enums/PropertyType.enum';
+import { Department } from '../../../../../properties/domain/model/enums/Department.enum';
+import { District } from '../../../../../properties/domain/model/enums/District.enum';
+
+import { OperationTypeLabel } from '../../../../../properties/domain/model/enums/OperationType-label';
+import { PropertyTypeLabel } from '../../../../../properties/domain/model/enums/PropertyType-label';
+import { DepartmentLabel } from '../../../../../properties/domain/model/enums/Department-label';
+import { DistrictLabel } from '../../../../../properties/domain/model/enums/District-label';
 
 @Component({
   selector: 'app-browse-component',
@@ -33,6 +39,40 @@ import {District} from '../../../../../properties/domain/model/enums/District.en
 })
 export class BrowseComponent implements OnInit {
 
+  // ============================
+  // ENUMS Y LABELS
+  // ============================
+
+  protected readonly operationTypeLabel = OperationTypeLabel;
+  protected readonly operationTypes: OperationType[] = Object.values(OperationType);
+
+  protected readonly propertyTypeLabel = PropertyTypeLabel;
+  protected readonly propertyTypes: PropertyType[] = Object.values(PropertyType);
+
+  protected readonly departmentLabel = DepartmentLabel;
+  protected readonly departments: Department[] = Object.values(Department);
+
+  protected readonly districtLabel = DistrictLabel;
+  protected readonly districts: District[] = Object.values(District);
+
+  // ============================
+  // DROPDOWNS
+  // ============================
+
+  isOperationDropdownOpen = false;
+  isPropertyDropdownOpen = false;
+  isDepartmentDropdownOpen = false;
+  isDistrictDropdownOpen = false;
+
+  operationTypePlaceholder!: OperationType;
+  propertyTypePlaceholder!: PropertyType;
+  departmentPlaceholder!: Department;
+  districtPlaceholder!: District | null;
+
+  // ============================
+  // DATA
+  // ============================
+
   readonly properties: PropertyEntity[] = [];
 
   searchParams: PropertySearchParams = {
@@ -46,9 +86,12 @@ export class BrowseComponent implements OnInit {
   };
 
   showAdvanced = false;
+  priceSortDirection: 'ASC' | 'DESC' = 'ASC';
 
-  constructor(private readonly propertiesService: PropertiesService,
-              private readonly route: ActivatedRoute
+  constructor(
+    private readonly propertiesService: PropertiesService,
+    private readonly route: ActivatedRoute,
+    private readonly elementRef: ElementRef
   ) {}
 
   ngOnInit(): void {
@@ -67,18 +110,36 @@ export class BrowseComponent implements OnInit {
       this.searchParams.district =
         params['district'] as District;
 
+      // Inicializamos placeholders para mostrar los filtros seleccionados
+
+      this.operationTypePlaceholder =
+        this.searchParams.operationType ?? OperationType.RENT;
+
+      this.propertyTypePlaceholder =
+        this.searchParams.propertyType ?? PropertyType.HOUSE;
+
+      this.departmentPlaceholder =
+        this.searchParams.department ?? Department.LIMA;
+
+      this.districtPlaceholder =
+        this.searchParams.district ?? null;
+
       this.loadProperties();
     });
-
   }
 
+
   loadProperties(): void {
-    // Usamos el método search del servicio pasando los parámetros actuales
+
     this.propertiesService.search(this.searchParams)
       .subscribe({
         next: (response) => {
+
           this.properties.length = 0;
+
           this.properties.push(...response);
+
+          this.sortProperties();
         },
         error: (err) => {
           console.error('Error al cargar propiedades:', err);
@@ -88,22 +149,111 @@ export class BrowseComponent implements OnInit {
   }
 
   onSearch(): void {
-    // Al buscar, reiniciamos el estado (si fuera necesario) y llamamos al endpoint
     this.loadProperties();
   }
 
-  // --- Helpers de Imagen (Mantenidos) ---
+  toggleOperationDropdown(): void {
+
+    this.isOperationDropdownOpen = !this.isOperationDropdownOpen;
+
+    if (this.isOperationDropdownOpen) {
+      this.isPropertyDropdownOpen = false;
+      this.isDepartmentDropdownOpen = false;
+      this.isDistrictDropdownOpen = false;
+    }
+  }
+
+  togglePropertyDropdown(): void {
+
+    this.isPropertyDropdownOpen = !this.isPropertyDropdownOpen;
+
+    if (this.isPropertyDropdownOpen) {
+      this.isOperationDropdownOpen = false;
+      this.isDepartmentDropdownOpen = false;
+      this.isDistrictDropdownOpen = false;
+    }
+  }
+
+  toggleDepartmentDropdown(): void {
+
+    this.isDepartmentDropdownOpen = !this.isDepartmentDropdownOpen;
+
+    if (this.isDepartmentDropdownOpen) {
+      this.isOperationDropdownOpen = false;
+      this.isPropertyDropdownOpen = false;
+      this.isDistrictDropdownOpen = false;
+    }
+  }
+
+  toggleDistrictDropdown(): void {
+
+    this.isDistrictDropdownOpen = !this.isDistrictDropdownOpen;
+
+    if (this.isDistrictDropdownOpen) {
+      this.isOperationDropdownOpen = false;
+      this.isPropertyDropdownOpen = false;
+      this.isDepartmentDropdownOpen = false;
+    }
+  }
+
+  selectOperationType(type: OperationType): void {
+    this.operationTypePlaceholder = type;
+    this.searchParams.operationType = type;
+    this.isOperationDropdownOpen = false;
+  }
+
+  selectPropertyType(type: PropertyType): void {
+    this.propertyTypePlaceholder = type;
+    this.searchParams.propertyType = type;
+    this.isPropertyDropdownOpen = false;
+  }
+
+  selectDepartment(department: Department): void {
+    this.departmentPlaceholder = department;
+    this.searchParams.department = department;
+    this.isDepartmentDropdownOpen = false;
+  }
+
+  selectDistrict(district: District): void {
+    this.districtPlaceholder = district;
+    this.searchParams.district = district;
+    this.isDistrictDropdownOpen = false;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+
+    const target = event.target as HTMLElement;
+
+    const clickedDropdown = target.closest('.dropdown-container');
+
+    if (!clickedDropdown) {
+      this.isOperationDropdownOpen = false;
+      this.isPropertyDropdownOpen = false;
+      this.isDepartmentDropdownOpen = false;
+      this.isDistrictDropdownOpen = false;
+    }
+  }
+
+
   private readonly assetsBaseUrl = this.getAssetsBaseUrl();
 
   getCoverImage(property: PropertyEntity): string {
-    const cover = property.images?.find((image) => image.cover) ?? property.images?.[0];
+
+    const cover =
+      property.images?.find((image) => image.cover)
+      ?? property.images?.[0];
+
     const filePath = cover?.filePath?.trim();
 
     if (!filePath) {
       return 'assets/HomeArt.png';
     }
 
-    if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
+    if (
+      filePath.startsWith('http://') ||
+      filePath.startsWith('https://')
+    ) {
       return filePath;
     }
 
@@ -115,17 +265,26 @@ export class BrowseComponent implements OnInit {
   }
 
   private getAssetsBaseUrl(): string {
-    const apiUrl = environment.serverBasePath.replace(/\/$/, '');
-    const origin = new URL(apiUrl).origin;
+
+    const apiUrl =
+      environment.serverBasePath.replace(/\/$/, '');
+
+    const origin =
+      new URL(apiUrl).origin;
+
     return origin;
   }
 
+
   toggleTag(tag: any): void {
+
     if (!this.searchParams.tags) {
       this.searchParams.tags = [];
     }
 
-    const index = this.searchParams.tags.indexOf(tag);
+    const index =
+      this.searchParams.tags.indexOf(tag);
+
     if (index > -1) {
       this.searchParams.tags.splice(index, 1);
     } else {
@@ -136,4 +295,29 @@ export class BrowseComponent implements OnInit {
   isTagSelected(tag: any): boolean {
     return this.searchParams.tags?.includes(tag) ?? false;
   }
+
+  togglePriceSort(): void {
+
+    this.priceSortDirection =
+      this.priceSortDirection === 'ASC'
+        ? 'DESC'
+        : 'ASC';
+
+    this.sortProperties();
+  }
+
+  private sortProperties(): void {
+
+    this.properties.sort((a, b) => {
+
+      const priceA = a.priceDollars ?? 0;
+      const priceB = b.priceDollars ?? 0;
+
+      return this.priceSortDirection === 'ASC'
+        ? priceA - priceB
+        : priceB - priceA;
+    });
+  }
+
+
 }
