@@ -86,7 +86,7 @@ export class BrowseComponent implements OnInit {
   };
 
   showAdvanced = false;
-  priceSortDirection: 'ASC' | 'DESC' = 'ASC';
+  priceAscending = true;
 
   constructor(
     private readonly propertiesService: PropertiesService,
@@ -134,12 +134,17 @@ export class BrowseComponent implements OnInit {
     this.propertiesService.search(this.searchParams)
       .subscribe({
         next: (response) => {
-
           this.properties.length = 0;
-
           this.properties.push(...response);
 
-          this.sortProperties();
+          this.properties.sort((a, b) => {
+
+            if (this.priceAscending) {
+              return a.priceDollars - b.priceDollars;
+            }
+
+            return b.priceDollars - a.priceDollars;
+          });
         },
         error: (err) => {
           console.error('Error al cargar propiedades:', err);
@@ -150,6 +155,20 @@ export class BrowseComponent implements OnInit {
 
   onSearch(): void {
     this.loadProperties();
+  }
+
+  togglePriceSort(): void {
+
+    this.priceAscending = !this.priceAscending;
+
+    this.properties.sort((a, b) => {
+
+      if (this.priceAscending) {
+        return a.priceDollars - b.priceDollars;
+      }
+
+      return b.priceDollars - a.priceDollars;
+    });
   }
 
   toggleOperationDropdown(): void {
@@ -295,29 +314,4 @@ export class BrowseComponent implements OnInit {
   isTagSelected(tag: any): boolean {
     return this.searchParams.tags?.includes(tag) ?? false;
   }
-
-  togglePriceSort(): void {
-
-    this.priceSortDirection =
-      this.priceSortDirection === 'ASC'
-        ? 'DESC'
-        : 'ASC';
-
-    this.sortProperties();
-  }
-
-  private sortProperties(): void {
-
-    this.properties.sort((a, b) => {
-
-      const priceA = a.priceDollars ?? 0;
-      const priceB = b.priceDollars ?? 0;
-
-      return this.priceSortDirection === 'ASC'
-        ? priceA - priceB
-        : priceB - priceA;
-    });
-  }
-
-
 }

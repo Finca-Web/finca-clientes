@@ -130,19 +130,27 @@
 
       </div>
 
+      <!-- ORDENAMIENTO POR PRECIO -->
+
       <button
         class="price-sort-button"
         (click)="togglePriceSort()">
 
         <span>Precio ($)</span>
 
-        <mat-icon>
-          {{
-            priceSortDirection === 'ASC'
-              ? 'arrow_upward'
-              : 'arrow_downward'
-          }}
-        </mat-icon>
+        <div class="sort-icons">
+
+          <mat-icon
+            [class.active]="priceAscending">
+            keyboard_arrow_up
+          </mat-icon>
+
+          <mat-icon
+            [class.active]="!priceAscending">
+            keyboard_arrow_down
+          </mat-icon>
+
+        </div>
 
       </button>
 
