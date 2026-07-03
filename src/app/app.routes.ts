@@ -28,5 +28,14 @@ export const routes: Routes = [
       import('./browse/presentation/components/layout/browse/browse.component')
          .then(m => m.BrowseComponent),
     title: `${baseTitle} - Catalogo`
-  }
+  },
+
+  {
+    path: 'selling',
+    loadComponent: () =>
+      import('./selling/presentation/components/layout/selling-component/selling-component.component')
+        .then(m => m.SellingComponentComponent),
+    title: `${baseTitle} - => Vender`
+  },
+
 ];

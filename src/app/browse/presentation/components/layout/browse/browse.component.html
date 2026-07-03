@@ -5,32 +5,173 @@
     <h2 class="browse-title">Encuentra tu próximo hogar</h2>
 
     <div class="search-bar">
-      <div class="search-pill">
-        <select class="pill-select" [(ngModel)]="searchParams.operationType">
-          <option [ngValue]="undefined" disabled selected>Operación</option>
-          <option value="SALE">Venta</option>
-          <option value="RENT">Alquiler</option>
-        </select>
-        <mat-icon class="select-icon">keyboard_arrow_down</mat-icon>
+
+      <!-- OPERACIÓN -->
+      <div class="dropdown-container">
+
+        <div
+          class="browse-search-pill"
+          (click)="toggleOperationDropdown()">
+
+      <span>
+        {{ operationTypeLabel[operationTypePlaceholder] }}
+      </span>
+
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </div>
+
+        @if (isOperationDropdownOpen) {
+          <div class="dropdown-menu">
+
+            @for (type of operationTypes; track type) {
+              <div
+                class="dropdown-item"
+                (click)="selectOperationType(type)">
+                {{ operationTypeLabel[type] }}
+              </div>
+            }
+
+          </div>
+        }
+
       </div>
 
-      <div class="search-pill">
-        <select class="pill-select" [(ngModel)]="searchParams.propertyType">
-          <option [ngValue]="undefined" disabled selected>Tipo de Propiedad</option>
-          <option value="APARTMENT">Departamento</option>
-          <option value="HOUSE">Casa</option>
-          <option value="LAND">Terreno</option>
-          <option value="OFFICE">Oficina</option>
-        </select>
-        <mat-icon class="select-icon">keyboard_arrow_down</mat-icon>
+      <!-- TIPO DE PROPIEDAD -->
+      <div class="dropdown-container">
+
+        <div
+          class="browse-search-pill"
+          (click)="togglePropertyDropdown()">
+
+      <span>
+        {{ propertyTypeLabel[propertyTypePlaceholder] }}
+      </span>
+
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </div>
+
+        @if (isPropertyDropdownOpen) {
+          <div class="dropdown-menu">
+
+            @for (type of propertyTypes; track type) {
+              <div
+                class="dropdown-item"
+                (click)="selectPropertyType(type)">
+                {{ propertyTypeLabel[type] }}
+              </div>
+            }
+
+          </div>
+        }
+
       </div>
 
-      <button class="search-button" (click)="onSearch()">Buscar</button>
+      <!-- DEPARTAMENTO -->
+      <div class="dropdown-container">
 
-      <button class="advanced-filters-btn" (click)="showAdvanced = !showAdvanced">
-        <mat-icon>{{ showAdvanced ? 'close' : 'tune' }}</mat-icon>
-        {{ showAdvanced ? 'Cerrar Filtros' : 'Filtros Avanzados' }}
+        <div
+          class="browse-search-pill"
+          (click)="toggleDepartmentDropdown()">
+
+      <span>
+        {{ departmentLabel[departmentPlaceholder] }}
+      </span>
+
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </div>
+
+        @if (isDepartmentDropdownOpen) {
+          <div class="dropdown-menu">
+
+            @for (department of departments; track department) {
+              <div
+                class="dropdown-item"
+                (click)="selectDepartment(department)">
+                {{ departmentLabel[department] }}
+              </div>
+            }
+
+          </div>
+        }
+
+      </div>
+
+      <!-- DISTRITO -->
+      <div class="dropdown-container">
+
+        <div
+          class="browse-search-pill"
+          (click)="toggleDistrictDropdown()">
+
+      <span>
+        {{
+          districtPlaceholder
+            ? districtLabel[districtPlaceholder]
+            : 'Distrito'
+        }}
+      </span>
+
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </div>
+
+        @if (isDistrictDropdownOpen) {
+          <div class="dropdown-menu">
+
+            @for (district of districts; track district) {
+              <div
+                class="dropdown-item"
+                (click)="selectDistrict(district)">
+                {{ districtLabel[district] }}
+              </div>
+            }
+
+          </div>
+        }
+
+      </div>
+
+      <!-- ORDENAMIENTO POR PRECIO -->
+
+      <button
+        class="price-sort-button"
+        (click)="togglePriceSort()">
+
+        <span>Precio ($)</span>
+
+        <div class="sort-icons">
+
+          <mat-icon
+            [class.active]="priceAscending">
+            keyboard_arrow_up
+          </mat-icon>
+
+          <mat-icon
+            [class.active]="!priceAscending">
+            keyboard_arrow_down
+          </mat-icon>
+
+        </div>
+
       </button>
+
+      <button
+        class="search-button"
+        (click)="onSearch()">
+        Buscar
+      </button>
+
+      <button
+        class="advanced-filters-btn"
+        (click)="showAdvanced = !showAdvanced">
+
+        <mat-icon>
+          {{ showAdvanced ? 'close' : 'tune' }}
+        </mat-icon>
+
+        {{ showAdvanced ? 'Cerrar Filtros' : 'Filtros Avanzados' }}
+
+      </button>
+
     </div>
 
     @if (showAdvanced) {
