@@ -31,7 +31,7 @@ export class HomeComponentComponent {
   // OperationType Enum Set Up
   protected readonly operationTypeLabel = OperationTypeLabel;
   protected readonly operationTypes: OperationType[] = Object.values(OperationType);
-  operationTypePlaceholder: OperationType = OperationType.RENT;
+  operationTypePlaceholder: OperationType = OperationType.SALE;
   isOperationDropdownOpen = false;
 
   // PropertyType Enum Set Up

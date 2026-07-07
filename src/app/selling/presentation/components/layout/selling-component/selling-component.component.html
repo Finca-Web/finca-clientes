@@ -1,0 +1,90 @@
+<app-headerGreen-content></app-headerGreen-content>
+
+<section class="hero-section-selling">
+  <div class="hero-content-selling">
+    <h1 class="hero-text">
+      <span class="bold">Quedate</span> en tu sofá, <span class="bold">nosotros vendemos tu casa</span> por ti.
+    </h1>
+    <div class="hero-image">
+      <img src="/assets/SOFA-WEB.png" alt="Sofá">
+    </div>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="contact-info">
+    <h1 class="title">Contactanos</h1>
+    <p class="subtitle">Nos encantaría conocerte. Por favor llena el formulario y nos contactaremos contigo pronto</p>
+
+    <div class="info-grid">
+      <div class="info-item">
+        <h2>Email</h2>
+        <p>Contactanos por correo si deseas<br>que te asesoremos.</p>
+        <strong>fincaverdeinmobiliaria&#64;gmail.com</strong>
+      </div>
+
+      <div class="info-item">
+        <h2>Telefono</h2>
+        <p>¡Llamanos!<br>Lunes a Viernes de 10 am - 6 pm<br>Sabados de 10 am - 1 pm</p>
+        <strong>923529731</strong>
+      </div>
+
+      <div class="info-item redes">
+        <h2>Nuestras redes</h2>
+        <p>Siguenos y encuentra todo nuestro contenido</p>
+        <strong>&#64;fincaverdeinmobiliaria</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form-container">
+    <h2>Escribenos</h2>
+
+    <form [formGroup]="contactForm" (ngSubmit)="enviarWhatsApp()" class="formulario-contacto">
+      <div class="form-row">
+        <div class="input-group">
+          <label>Nombres*</label>
+          <input type="text" formControlName="nombres">
+        </div>
+        <div class="input-group">
+          <label>Apellidos*</label>
+          <input type="text" formControlName="apellidos">
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>Correo*</label>
+        <input type="email" formControlName="correo">
+      </div>
+
+      <div class="input-group">
+        <label>Mensaje*</label>
+        <textarea formControlName="mensaje" rows="4"></textarea>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" required id="privacidad">
+        <label for="privacidad">Acepto las políticas de privacidad</label>
+      </div>
+
+      <button type="submit" [disabled]="!contactForm.valid" class="btn-enviar">
+        Enviar
+      </button>
+    </form>
+  </div>
+</section>
+
+<section class="video-section">
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/BEDMQSyrG3k"
+      title="Video de captación Finca Verde"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<app-footer-content></app-footer-content>
