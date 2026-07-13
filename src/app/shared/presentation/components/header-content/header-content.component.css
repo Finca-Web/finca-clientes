@@ -18,6 +18,7 @@
   background-color: #E6E5D3;
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
+  gap: 20px;
 }
 
 .logo-container {
@@ -107,6 +108,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-shrink: 0;
 }
 
 .hamburger-btn {
@@ -155,11 +157,12 @@
   }
 
   .navbar {
-    padding: 0 20px;
+    padding: 0 16px;
+    gap: 12px;
   }
 
   .logo {
-    width: 160px;
+    width: 140px;
   }
 
   .hamburger-btn {
@@ -179,12 +182,11 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    gap: 20px;
-    width: 240px;
-    max-width: 80vw;
+    gap: 18px;
+    width: min(82vw, 320px);
     height: calc(100vh - 80px);
     margin-left: 0;
-    padding: 32px 24px;
+    padding: 28px 20px;
     background-color: #E6E5D3;
     box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
     transform: translateX(100%);
@@ -200,6 +202,7 @@
   .nav-links a {
     font-size: 18px;
     padding-bottom: 4px;
+    width: 100%;
   }
 
   .divider {
@@ -217,12 +220,29 @@
 }
 
 @media (max-width: 480px) {
+  .custom-toolbar {
+    height: 72px;
+  }
+
+  .navbar {
+    padding: 0 12px;
+  }
+
   .logo {
-    width: 130px;
+    width: 118px;
   }
 
   .whatsapp-icon {
     width: 36px;
     height: 36px;
+  }
+
+  .nav-links {
+    top: 72px;
+    height: calc(100vh - 72px);
+  }
+
+  .mobile-menu-backdrop {
+    top: 72px;
   }
 }

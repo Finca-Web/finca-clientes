@@ -17,14 +17,34 @@
       <a routerLink="/about">Nosotros</a>
     </nav>
 
-    <a
-      class="whatsapp-link"
-      href="https://wa.me/51923529731"
-      target="_blank"
-      rel="noopener"
-      aria-label="WhatsApp"
-    >
-      <img src="/assets/WspLogo.png" alt="WhatsApp" class="whatsapp-icon" />
-    </a>
+    <div class="right-actions">
+      <a
+        class="whatsapp-link"
+        href="https://wa.me/51923529731"
+        target="_blank"
+        rel="noopener"
+        aria-label="WhatsApp"
+      >
+        <img src="/assets/WspLogo.png" alt="WhatsApp" class="whatsapp-icon" />
+      </a>
+
+      <button
+        type="button"
+        class="hamburger-btn"
+        [class.is-open]="isMobileMenuOpen"
+        (click)="isMobileMenuOpen = !isMobileMenuOpen"
+        aria-label="Abrir menú"
+        [attr.aria-expanded]="isMobileMenuOpen"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </header>
 </mat-toolbar>
+
+@if (isMobileMenuOpen) {
+  <div class="mobile-menu-backdrop" (click)="closeMobileMenu()"></div>
+}
+

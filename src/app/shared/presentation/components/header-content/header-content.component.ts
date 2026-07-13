@@ -12,8 +12,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 export class HeaderContentComponent {
   isMobileMenuOpen = false;
 
-  toggleMobileMenu() {
-    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  closeMobileMenu() {
+    this.isMobileMenuOpen = false;
   }
 
 }
