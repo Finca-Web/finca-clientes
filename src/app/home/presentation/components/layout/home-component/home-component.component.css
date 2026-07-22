@@ -424,13 +424,15 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 100%;
     max-width: 320px;
-    gap: 8px;
+    column-gap: 12px;
+    row-gap: 8px;
     align-items: stretch;
     margin: 0 auto;
   }
 
   .dropdown-container {
     width: 100%;
+    min-width: 0;
   }
 
   .search-pill,
@@ -443,6 +445,7 @@
     font-size: 14px;
     margin: 0;
     border-radius: 14px;
+    box-sizing: border-box;
   }
 
   .search-pill {
@@ -656,7 +659,8 @@
 
   .search-bar {
     max-width: 290px;
-    gap: 7px;
+    column-gap: 10px;
+    row-gap: 7px;
   }
 
   .search-pill,
