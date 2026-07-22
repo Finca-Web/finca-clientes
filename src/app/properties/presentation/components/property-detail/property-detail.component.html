@@ -3,8 +3,8 @@
   <div class="property-title-card">
     <h1 class="property-title">{{ title }}</h1>
     <p class="property-price">
-      $ {{ property?.priceDollars ?? 0 }} USD
-      @if (property?.priceSoles != null) { | S/. {{ property?.priceSoles }} PEN}
+      $ {{ property?.priceDollars ?? 0 | number:'1.0-0':'en-US' }} USD
+      @if (property?.priceSoles != null) { | S/. {{ property?.priceSoles | number:'1.0-0':'en-US' }} PEN}
     </p>
   </div>
 
