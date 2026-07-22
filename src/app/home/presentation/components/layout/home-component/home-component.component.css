@@ -420,9 +420,15 @@
   }
 
   .search-bar {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 100%;
     gap: 10px;
+    align-items: stretch;
+  }
+
+  .dropdown-container {
+    width: 100%;
   }
 
   .search-pill,
@@ -430,10 +436,14 @@
   .search-button {
     width: 100%;
     min-width: unset;
-    max-width: 360px;
+    max-width: none;
     height: 48px;
     font-size: 15px;
-    margin: 0 auto;
+    margin: 0;
+  }
+
+  .search-button {
+    grid-column: 1 / -1;
   }
 
   .bottom-gradient {
