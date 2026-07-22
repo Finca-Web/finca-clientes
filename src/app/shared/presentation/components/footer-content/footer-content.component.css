@@ -2,17 +2,16 @@
   background-color: #00573F;
   color: #E6E5D3;
   width: 100%;
-  padding: 80px 70px;
+  padding: 56px 56px 48px;
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
   background-image: url('/assets/lineas crema 2.0.svg');
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 100%;
-  border-top-left-radius: 60px;
-  border-top-right-radius: 60px;
-
-  margin-top: 60px;
+  background-size: cover;
+  border-top-left-radius: 48px;
+  border-top-right-radius: 48px;
+  margin-top: 40px;
 }
 
 .footer-container {
@@ -21,7 +20,7 @@
   align-items: flex-start;
   max-width: 1400px;
   margin: 0 auto;
-  gap: 40px;
+  gap: 32px;
 }
 
 .footer-logo-container {
@@ -31,14 +30,14 @@
 }
 
 .footer-logo {
-  width: 300px;
+  width: min(300px, 100%);
   height: auto;
   object-fit: contain;
 }
 
 .footer-info {
   display: flex;
-  gap: 120px;
+  gap: 72px;
   flex-wrap: wrap;
 }
 
@@ -48,7 +47,7 @@
 }
 
 .footer-block h3 {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 800;
   margin: 0 0 15px 0;
   color: #E6E5D3;
@@ -56,7 +55,7 @@
 }
 
 .footer-block p {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   margin: 8px 0;
   color: #E6E5D3;
@@ -87,16 +86,16 @@
 
 @media (max-width: 900px) {
   .footer-section {
-    padding: 56px 28px;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
+    padding: 40px 20px 32px;
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
   }
 
   .footer-container {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 28px;
+    gap: 20px;
   }
 
   .footer-logo-container {
@@ -104,13 +103,13 @@
   }
 
   .footer-logo {
-    width: 220px;
+    width: min(220px, 72vw);
   }
 
   .footer-info {
     width: 100%;
     justify-content: center;
-    gap: 28px;
+    gap: 20px;
   }
 
   .footer-block {
@@ -118,36 +117,36 @@
   }
 
   .footer-block h3 {
-    font-size: 26px;
+    font-size: 22px;
   }
 
   .footer-block p {
-    font-size: 17px;
+    font-size: 15px;
   }
 }
 
 @media (max-width: 600px) {
   .footer-section {
-    padding: 44px 18px 36px;
-    border-top-left-radius: 28px;
-    border-top-right-radius: 28px;
+    padding: 32px 16px 28px;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
   }
 
   .footer-logo {
-    width: 180px;
+    width: min(170px, 64vw);
   }
 
   .footer-info {
-    gap: 22px;
+    gap: 16px;
   }
 
   .footer-block h3 {
-    font-size: 22px;
+    font-size: 20px;
     margin-bottom: 10px;
   }
 
   .footer-block p {
-    font-size: 15px;
+    font-size: 14px;
     margin: 6px 0;
   }
 

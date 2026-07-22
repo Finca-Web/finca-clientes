@@ -176,6 +176,7 @@
 
   /* El menú se convierte en panel desplegable */
   .nav-links {
+    display: flex;
     position: fixed;
     top: 80px;
     right: 0;

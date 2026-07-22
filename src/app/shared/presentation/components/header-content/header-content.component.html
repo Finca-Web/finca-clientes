@@ -5,16 +5,16 @@
       <img src="/assets/Logo.png" alt="Logo de la Inmobiliaria" class="logo">
     </div>
 
-    <nav class="nav-links">
-      <a routerLink="/home">Inicio</a>
+    <nav class="nav-links" [class.nav-links-open]="isMobileMenuOpen">
+      <a routerLink="/home" (click)="closeMobileMenu()">Inicio</a>
       <span class="divider">|</span>
-      <a routerLink="/browse">Propiedades</a>
+      <a routerLink="/browse" (click)="closeMobileMenu()">Propiedades</a>
       <span class="divider">|</span>
-      <a routerLink="/selling">¿Quieres vender?</a>
+      <a routerLink="/selling" (click)="closeMobileMenu()">¿Quieres vender?</a>
       <span class="divider">|</span>
-      <a routerLink="/about">Testimonios</a>
+      <a routerLink="/about" (click)="closeMobileMenu()">Testimonios</a>
       <span class="divider">|</span>
-      <a routerLink="/about">Nosotros</a>
+      <a routerLink="/about" (click)="closeMobileMenu()">Nosotros</a>
     </nav>
 
     <div class="right-actions">
