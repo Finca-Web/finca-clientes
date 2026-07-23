@@ -3,8 +3,8 @@
   <div class="property-title-card">
     <h1 class="property-title">{{ title }}</h1>
     <p class="property-price">
-      $ {{ property?.priceDollars ?? 0 }} USD
-      @if (property?.priceSoles != null) { | S/. {{ property?.priceSoles }} PEN}
+      $ {{ property?.priceDollars ?? 0 | number:'1.0-0':'en-US' }} USD
+      @if (property?.priceSoles != null) { | S/. {{ property?.priceSoles | number:'1.0-0':'en-US' }} PEN}
     </p>
   </div>
 
@@ -95,7 +95,7 @@
 
   <section class="property-description">
     <h2 class="description-title">Descripción de la propiedad</h2>
-    <p class="description-text">{{ property?.description ?? '' }}</p>
+    <div class="description-text" [innerHTML]="sanitizedDescription"></div>
   </section>
 
   <div *ngIf="property && groupedTags.length > 0" class="tags-section">

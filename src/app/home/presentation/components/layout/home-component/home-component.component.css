@@ -420,9 +420,19 @@
   }
 
   .search-bar {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 100%;
-    gap: 10px;
+    max-width: 320px;
+    column-gap: 12px;
+    row-gap: 8px;
+    align-items: stretch;
+    margin: 0 auto;
+  }
+
+  .dropdown-container {
+    width: 100%;
+    min-width: 0;
   }
 
   .search-pill,
@@ -430,10 +440,32 @@
   .search-button {
     width: 100%;
     min-width: unset;
-    max-width: 360px;
-    height: 48px;
-    font-size: 15px;
-    margin: 0 auto;
+    max-width: none;
+    height: 42px;
+    font-size: 14px;
+    margin: 0;
+    border-radius: 14px;
+    box-sizing: border-box;
+  }
+
+  .search-pill {
+    padding: 0 14px;
+  }
+
+  .search-pill svg {
+    width: 12px;
+    height: 7px;
+  }
+
+  .dropdown-item {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .search-button {
+    grid-column: 1 / -1;
+    height: 44px;
+    font-size: 14px;
   }
 
   .bottom-gradient {
@@ -623,6 +655,24 @@
 
   .hero-title .font-bold {
     font-size: 24px;
+  }
+
+  .search-bar {
+    max-width: 290px;
+    column-gap: 10px;
+    row-gap: 7px;
+  }
+
+  .search-pill,
+  .input-pill,
+  .search-button {
+    height: 40px;
+    font-size: 13px;
+    border-radius: 12px;
+  }
+
+  .search-pill {
+    padding: 0 12px;
   }
 
   .properties-title {

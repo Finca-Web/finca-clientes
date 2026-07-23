@@ -215,6 +215,29 @@
   color: #1F1F1F;
 }
 
+.description-text p {
+  margin: 0 0 14px;
+}
+
+.description-text p:last-child {
+  margin-bottom: 0;
+}
+
+.description-text ul,
+.description-text ol {
+  margin: 0 0 14px;
+  padding-left: 22px;
+}
+
+.description-text b,
+.description-text strong {
+  font-weight: 700;
+}
+
+.description-text u {
+  text-decoration: underline;
+}
+
 .tags-section {
   margin-top: 28px;
   margin-left: -200px;
@@ -246,3 +269,91 @@
   border-radius: 20px; /* Rectángulo redondeado */
   white-space: nowrap;
 }
+
+@media (max-width: 900px) {
+  .property-detail {
+    padding: 16px 10px;
+  }
+
+  .property-title-card {
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+
+  .property-title {
+    font-size: clamp(24px, 6vw, 32px);
+  }
+
+  .property-price {
+    font-size: 18px;
+  }
+
+  .property-gallery {
+    border-radius: 18px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .gallery-badge {
+    top: 10px;
+    left: 10px;
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .gallery-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 19px;
+  }
+
+  .stats-row {
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .stat-card {
+    width: calc(50% - 6px);
+    max-width: 168px;
+    height: 122px;
+    padding: 12px;
+  }
+
+  .stat-icon svg {
+    width: 60px;
+    height: 60px;
+  }
+
+  .stat-value {
+    font-size: 18px;
+  }
+
+  .property-description,
+  .tags-section {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 20px;
+  }
+
+  .description-text {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .tag-item {
+    font-size: 14px;
+    padding: 7px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-card {
+    width: 100%;
+    max-width: none;
+  }
+
+  .property-gallery {
+    aspect-ratio: 1 / 1;
+  }
+}
+
