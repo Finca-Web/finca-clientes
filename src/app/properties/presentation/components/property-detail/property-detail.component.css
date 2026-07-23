@@ -215,6 +215,29 @@
   color: #1F1F1F;
 }
 
+.description-text p {
+  margin: 0 0 14px;
+}
+
+.description-text p:last-child {
+  margin-bottom: 0;
+}
+
+.description-text ul,
+.description-text ol {
+  margin: 0 0 14px;
+  padding-left: 22px;
+}
+
+.description-text b,
+.description-text strong {
+  font-weight: 700;
+}
+
+.description-text u {
+  text-decoration: underline;
+}
+
 .tags-section {
   margin-top: 28px;
   margin-left: -200px;

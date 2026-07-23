@@ -95,7 +95,7 @@
 
   <section class="property-description">
     <h2 class="description-title">Descripción de la propiedad</h2>
-    <p class="description-text">{{ property?.description ?? '' }}</p>
+    <div class="description-text" [innerHTML]="sanitizedDescription"></div>
   </section>
 
   <div *ngIf="property && groupedTags.length > 0" class="tags-section">

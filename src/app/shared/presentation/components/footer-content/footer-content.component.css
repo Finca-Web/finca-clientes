@@ -79,6 +79,11 @@
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+.social-icons svg.icon-tiktok {
+  fill: #E6E5D3;
+  stroke: none;
+}
+
 .social-icons svg:hover {
   transform: translateY(-4px);
   opacity: 0.8;
@@ -154,5 +159,15 @@
     gap: 16px;
     justify-content: center;
   }
+}
+
+.icon-tiktok {
+  fill: #E6E5D3;
+  stroke: none;
+}
+
+.icon-tiktok:hover {
+  transform: translateY(-4px);
+  opacity: 0.8;
 }
 
