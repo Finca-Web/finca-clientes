@@ -5,26 +5,46 @@
       <img src="/assets/LogoFooter.png" alt="Logo de la Inmobiliaria" class="logo">
     </div>
 
-    <nav class="nav-links">
-      <a routerLink="/home">Inicio</a>
+    <nav class="nav-links" [class.nav-links-open]="isMobileMenuOpen">
+      <a routerLink="/home" (click)="closeMobileMenu()">Inicio</a>
       <span class="divider">|</span>
-      <a routerLink="/browse">Propiedades</a>
+      <a routerLink="/browse" (click)="closeMobileMenu()">Propiedades</a>
       <span class="divider">|</span>
-      <a routerLink="/rent">¿Quieres vender?</a>
+      <a routerLink="/selling" (click)="closeMobileMenu()">¿Quieres vender?</a>
       <span class="divider">|</span>
-      <a routerLink="/about">Testimonios</a>
+      <a routerLink="/about" (click)="closeMobileMenu()">Testimonios</a>
       <span class="divider">|</span>
-      <a routerLink="/about">Nosotros</a>
+      <a routerLink="/about" (click)="closeMobileMenu()">Nosotros</a>
     </nav>
 
-    <a
-      class="whatsapp-link"
-      href="https://wa.me/51923529731"
-      target="_blank"
-      rel="noopener"
-      aria-label="WhatsApp"
-    >
-      <img src="/assets/WspLogo.png" alt="WhatsApp" class="whatsapp-icon" />
-    </a>
+    <div class="right-actions">
+      <a
+        class="whatsapp-link"
+        href="https://wa.me/51923529731"
+        target="_blank"
+        rel="noopener"
+        aria-label="WhatsApp"
+      >
+        <img src="/assets/WspLogo.png" alt="WhatsApp" class="whatsapp-icon" />
+      </a>
+
+      <button
+        type="button"
+        class="hamburger-btn"
+        [class.is-open]="isMobileMenuOpen"
+        (click)="isMobileMenuOpen = !isMobileMenuOpen"
+        aria-label="Abrir menú"
+        [attr.aria-expanded]="isMobileMenuOpen"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </header>
 </mat-toolbar>
+
+@if (isMobileMenuOpen) {
+  <div class="mobile-menu-backdrop" (click)="closeMobileMenu()"></div>
+}
+

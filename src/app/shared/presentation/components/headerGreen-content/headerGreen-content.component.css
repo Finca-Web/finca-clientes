@@ -18,6 +18,7 @@
   background-color: #0C5E3D;
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
+  gap: 20px;
 }
 
 .logo-container {
@@ -102,3 +103,147 @@
   transform: translateY(-4px);
   opacity: 0.8;
 }
+
+.right-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 20;
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hamburger-btn.is-open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-btn.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-btn.is-open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.mobile-menu-backdrop {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .custom-toolbar {
+    height: 80px;
+  }
+
+  .navbar {
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  .logo {
+    width: 140px;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .whatsapp-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 18px;
+    width: min(82vw, 320px);
+    height: calc(100vh - 80px);
+    margin-left: 0;
+    padding: 28px 20px;
+    background-color: #0C5E3D;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 15;
+    box-sizing: border-box;
+  }
+
+  .nav-links-open {
+    transform: translateX(0);
+  }
+
+  .nav-links a {
+    font-size: 18px;
+    padding-bottom: 4px;
+    width: 100%;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .mobile-menu-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    top: 80px;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 12;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-toolbar {
+    height: 72px;
+  }
+
+  .navbar {
+    padding: 0 12px;
+  }
+
+  .logo {
+    width: 118px;
+  }
+
+  .whatsapp-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav-links {
+    top: 72px;
+    height: calc(100vh - 72px);
+  }
+
+  .mobile-menu-backdrop {
+    top: 72px;
+  }
+}
+

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { PropertiesService } from '../../../application/properties.service';
 import { PropertyEntity } from '../../../domain/model/Property.entity';
 import { PropertyImageEntity } from '../../../domain/model/PropertyImage.entity';
@@ -29,7 +30,8 @@ export class PropertyDetailComponent implements OnInit {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly propertiesService: PropertiesService
+    private readonly propertiesService: PropertiesService,
+    private readonly sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -63,6 +65,10 @@ export class PropertyDetailComponent implements OnInit {
 
   get currentImageUrl(): string {
     return this.imageUrls[this.currentIndex] ?? '/assets/HomeArt.png';
+  }
+
+  get sanitizedDescription(): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(this.property?.description ?? '');
   }
 
   showPrevious(): void {
