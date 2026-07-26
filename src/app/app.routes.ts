@@ -38,4 +38,12 @@ export const routes: Routes = [
     title: `${baseTitle} - => Vender`
   },
 
+  {
+    path: 'testimonies',
+    loadComponent: () =>
+      import('./testimonies/presentation/components/layout/testimonies-component/testimonies-component')
+        .then(m => m.TestimoniesComponent),
+    title: `${baseTitle} - => Testimonies`
+  },
+
 ];
