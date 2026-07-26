@@ -41,7 +41,7 @@ export const routes: Routes = [
   {
     path: 'testimonies',
     loadComponent: () =>
-      import('./testimonies/presentation/components/layout/testimonies-component/testimonies-component')
+      import('./testimonies/presentation/components/layout/testimonies-component/testimonies-component.component')
         .then(m => m.TestimoniesComponent),
     title: `${baseTitle} - => Testimonies`
   },
