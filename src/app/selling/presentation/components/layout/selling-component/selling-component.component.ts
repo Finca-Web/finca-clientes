@@ -33,9 +33,12 @@ export class SellingComponentComponent implements OnInit {
   }
 
   private loadTikTokEmbedScript(): void {
-    const existing = document.getElementById('tiktok-embed-script');
-    if (existing) {
-      existing.remove();
+    // Si el script ya fue insertado antes (en esta sesión del navegador),
+    // NO lo volvemos a pedir. El propio script de TikTok observa el DOM
+    // y va a hidratar cualquier <blockquote class="tiktok-embed"> nuevo
+    // que aparezca, incluso si el componente se vuelve a montar.
+    if (document.getElementById('tiktok-embed-script')) {
+      return;
     }
 
     const script = document.createElement('script');
