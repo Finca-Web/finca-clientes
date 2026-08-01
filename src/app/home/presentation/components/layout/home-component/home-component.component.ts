@@ -57,7 +57,8 @@ export class HomeComponentComponent {
   private readonly previewCount = 1;
   private startIndex = 0;
   activeIndex = 0;
-
+  isCardsTransitioning = false;
+  cardsTransitionDirection: 'left' | 'right' | null = null;
   constructor(private readonly propertiesService: PropertiesService, private readonly elementRef: ElementRef,
               private readonly router: Router) {
     this.loadFeatured();
@@ -145,6 +146,7 @@ export class HomeComponentComponent {
     if (!this.canPrevious) {
       return;
     }
+    this.animateCardsTransition('left');
     this.startIndex = Math.max(0, this.startIndex - 1);
     this.activeIndex = 0;
   }
@@ -153,8 +155,18 @@ export class HomeComponentComponent {
     if (!this.canNext) {
       return;
     }
+    this.animateCardsTransition('right');
     this.startIndex = Math.min(this.properties.length - this.visibleCount, this.startIndex + 1);
     this.activeIndex = 0;
+  }
+
+  private animateCardsTransition(direction: 'left' | 'right'): void {
+    this.isCardsTransitioning = true;
+    this.cardsTransitionDirection = direction;
+    setTimeout(() => {
+      this.isCardsTransitioning = false;
+      this.cardsTransitionDirection = null;
+    }, 380);
   }
 
   toggleOperationDropdown(): void {

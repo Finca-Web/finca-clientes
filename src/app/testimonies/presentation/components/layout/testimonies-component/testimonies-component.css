@@ -211,6 +211,10 @@
   margin-bottom: 14px;
 }
 
+.photo-frame--small img {
+  object-position: center 12%;
+}
+
 .secondary-card__quote {
   font-size: 14px;
   line-height: 1.55;
