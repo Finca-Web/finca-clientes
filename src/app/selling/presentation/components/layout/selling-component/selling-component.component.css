@@ -34,7 +34,7 @@
 
 .hero-image {
   position: absolute;
-  right: 0;
+  right: -80px;
   bottom: -60px;
   width: 690px;
   display: flex;
