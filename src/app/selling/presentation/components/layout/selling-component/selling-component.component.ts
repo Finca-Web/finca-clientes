@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import {HeaderGreenContentComponent} from '../../../../../shared/presentation/components/headerGreen-content/headerGreen-content.component';
-import {FooterContentComponent} from '../../../../../shared/presentation/components/footer-content/footer-content.component';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { HeaderGreenContentComponent } from '../../../../../shared/presentation/components/headerGreen-content/headerGreen-content.component';
+import { FooterContentComponent } from '../../../../../shared/presentation/components/footer-content/footer-content.component';
+import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
@@ -16,7 +16,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
   templateUrl: './selling-component.component.html',
   styleUrl: './selling-component.component.css'
 })
-export class SellingComponentComponent {
+export class SellingComponentComponent implements OnInit {
   contactForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -26,6 +26,23 @@ export class SellingComponentComponent {
       correo: ['', [Validators.required, Validators.email]],
       mensaje: ['', Validators.required]
     });
+  }
+
+  ngOnInit(): void {
+    this.loadTikTokEmbedScript();
+  }
+
+  private loadTikTokEmbedScript(): void {
+    const existing = document.getElementById('tiktok-embed-script');
+    if (existing) {
+      existing.remove();
+    }
+
+    const script = document.createElement('script');
+    script.id = 'tiktok-embed-script';
+    script.src = 'https://www.tiktok.com/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
   }
 
   enviarWhatsApp() {

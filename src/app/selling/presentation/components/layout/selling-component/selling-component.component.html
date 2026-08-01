@@ -3,10 +3,8 @@
 <section class="hero-section-selling">
   <div class="hero-content-selling">
     <h1 class="hero-text">
-      <span class="bold">Quédate</span> en tu sofá,
-      <span class="bold">nosotros vendemos tu casa</span> por ti.
+      <span class="bold">Quédate</span> en tu sofá, <span class="bold">nosotros vendemos tu casa</span> por ti.
     </h1>
-
     <div class="hero-image">
       <img src="/assets/SOFA-WEB.png" alt="Sofá">
     </div>
@@ -16,28 +14,18 @@
 <section class="contact-section">
   <div class="contact-info">
     <h1 class="title">Contactanos</h1>
-
-    <p class="subtitle">
-      Nos encantaría conocerte. Por favor llena el formulario y nos contactaremos contigo pronto
-    </p>
+    <p class="subtitle">Nos encantaría conocerte. Por favor llena el formulario y nos contactaremos contigo pronto</p>
 
     <div class="info-grid">
       <div class="info-item">
         <h2>Email</h2>
-        <p>
-          Contáctanos por correo si deseas<br>
-          que te asesoremos.
-        </p>
+        <p>Contáctanos por correo si deseas<br>que te asesoremos.</p>
         <strong>fincaverdeinmobiliaria&#64;gmail.com</strong>
       </div>
 
       <div class="info-item">
         <h2>Teléfono</h2>
-        <p>
-          ¡Llámanos!<br>
-          Lunes a Viernes de 10 am - 6 pm<br>
-          Sábados de 10 am - 1 pm
-        </p>
+        <p>¡Llámanos!<br>Lunes a Viernes de 10 am - 6 pm<br>Sábados de 10 am - 1 pm</p>
         <strong>923529731</strong>
       </div>
 
@@ -52,17 +40,12 @@
   <div class="contact-form-container">
     <h2>Escríbenos</h2>
 
-    <form
-      [formGroup]="contactForm"
-      (ngSubmit)="enviarWhatsApp()"
-      class="formulario-contacto">
-
+    <form [formGroup]="contactForm" (ngSubmit)="enviarWhatsApp()" class="formulario-contacto">
       <div class="form-row">
         <div class="input-group">
           <label>Nombres*</label>
           <input type="text" formControlName="nombres">
         </div>
-
         <div class="input-group">
           <label>Apellidos*</label>
           <input type="text" formControlName="apellidos">
@@ -81,15 +64,10 @@
 
       <div class="checkbox-group">
         <input type="checkbox" required id="privacidad">
-        <label for="privacidad">
-          Acepto las políticas de privacidad
-        </label>
+        <label for="privacidad">Acepto las políticas de privacidad</label>
       </div>
 
-      <button
-        type="submit"
-        [disabled]="!contactForm.valid"
-        class="btn-enviar">
+      <button type="submit" [disabled]="!contactForm.valid" class="btn-enviar">
         Enviar
       </button>
     </form>
@@ -100,34 +78,14 @@
   <div class="video-wrapper tiktok-wrapper">
     <blockquote
       class="tiktok-embed"
-      cite="https://www.tiktok.com/@fincaverdeinmobiliaria/video/7649091894143634695"
+      cite="https://www.tiktok.com/&#64;fincaverdeinmobiliaria/video/7649091894143634695"
       data-video-id="7649091894143634695"
       style="max-width: 605px; min-width: 325px;">
-
       <section>
-        <a
-          target="_blank"
-          title="&#64;fincaverdeinmobiliaria"
-          href="https://www.tiktok.com/@fincaverdeinmobiliaria?refer=embed">
-          &#64;fincaverdeinmobiliaria
-        </a>
-
-        <p>
-          Vender una propiedad no solo implica encontrar un comprador, sino
-          también tomar decisiones acertadas en cada etapa del proceso.
-          Contar con asesoría especializada puede ayudarte a ahorrar tiempo,
-          evitar complicaciones y alcanzar mejores resultados.
-          📲 Escríbenos al 923 529 731 y recibe asesoría personalizada.
-        </p>
-
-        <a
-          target="_blank"
-          title="♬ sonido original - Finca Verde Inmobiliaria"
-          href="https://www.tiktok.com/music/sonido-original-Finca-Verde-Inmobiliaria-7649091939588967188?refer=embed">
-          ♬ sonido original - Finca Verde Inmobiliaria
-        </a>
+        <a target="_blank" title="&#64;fincaverdeinmobiliaria" href="https://www.tiktok.com/&#64;fincaverdeinmobiliaria?refer=embed">&#64;fincaverdeinmobiliaria</a>
+        <p>Vender una propiedad no solo implica encontrar un comprador, sino también tomar decisiones acertadas en cada etapa del proceso. Contar con asesoría especializada puede ayudarte a ahorrar tiempo, evitar complicaciones y alcanzar mejores resultados. 📲 Escríbenos al 923 529 731 y recibe asesoría personalizada.</p>
+        <a target="_blank" title="♬ sonido original  - Finca Verde Inmobiliaria" href="https://www.tiktok.com/music/sonido-original-Finca-Verde-Inmobiliaria-7649091939588967188?refer=embed">♬ sonido original  - Finca Verde Inmobiliaria</a>
       </section>
-
     </blockquote>
   </div>
 </section>
