@@ -48,10 +48,8 @@ export class TestimoniesComponent {
     {
       name: 'Karin Barreto',
       role: 'Venta en Jesús María',
-      quote: 'Desde el primer día sentí que mi departamento estaba en buenas manos. Tenía muchas dudas sobre el proceso de venta y los trámites, ' +
-        'pero el equipo de Finca Verde siempre estuvo dispuesto a explicarme cada paso con mucha paciencia. En solo un mes lograron vender mi ' +
-        'departamento a un excelente precio, algo que sinceramente no esperaba que sucediera tan rápido. Se encargaron de coordinar todo y me ' +
-        'acompañaron hasta el cierre de la operación. Los recomiendo por su profesionalismo, transparencia y el trato tan cercano que brindan a sus clientes.',
+      quote: 'Desde el primer día sentí que mi departamento estaba en buenas manos. En solo un mes, Finca Verde logró venderlo a un excelente precio y me acompañó en cada etapa del proceso, ' +
+        'resolviendo todas mis dudas. Destaco su profesionalismo, transparencia y el trato cercano que brindan. ¡Los recomiendo totalmente!',
       rating: 5,
       photoUrl: 'https://res.cloudinary.com/diahho4fm/image/upload/v1785562042/KARIN_BARRETO_-_VERTICAL_u9nnid.png'
 
