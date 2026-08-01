@@ -13,6 +13,10 @@
       {{ property?.operationType === 'RENT' ? 'EN ALQUILER' : 'EN VENTA' }}
     </div>
 
+    <button type="button" class="gallery-expand-btn" aria-label="Ver en tamaño completo" (click)="openFullscreen()">
+      <mat-icon>fullscreen</mat-icon>
+    </button>
+
     <button type="button" class="gallery-nav prev" aria-label="Imagen anterior" (click)="showPrevious()">
       <span aria-hidden="true">&lt;</span>
     </button>
@@ -30,6 +34,36 @@
       <span aria-hidden="true">&gt;</span>
     </button>
   </div>
+
+  @if (isFullscreen) {
+    <div class="fullscreen-overlay" (click)="closeFullscreen()">
+      <button type="button" class="fullscreen-close" aria-label="Minimizar" (click)="closeFullscreen(); $event.stopPropagation()">
+        <mat-icon>close</mat-icon>
+      </button>
+
+      <button type="button" class="fullscreen-nav prev" aria-label="Imagen anterior" (click)="showPrevious(); $event.stopPropagation()">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+
+      <img
+        class="fullscreen-image"
+        [class.is-transitioning]="isTransitioning"
+        [class.slide-left]="isTransitioning && transitionDirection === 'left'"
+        [class.slide-right]="isTransitioning && transitionDirection === 'right'"
+        [src]="currentImageUrl"
+        [alt]="title"
+        (click)="$event.stopPropagation()"
+      />
+
+      <button type="button" class="fullscreen-nav next" aria-label="Imagen siguiente" (click)="showNext(); $event.stopPropagation()">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+
+      <div class="fullscreen-counter">
+        Foto {{ currentIndex + 1 }} de {{ imageUrls.length }}
+      </div>
+    </div>
+  }
 
   <div class="stats-row" aria-label="Resumen de la propiedad">
     <div class="stat-card icon-card">

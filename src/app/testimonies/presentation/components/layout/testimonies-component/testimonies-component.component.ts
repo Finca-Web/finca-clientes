@@ -7,8 +7,8 @@ export interface Testimonial {
   name: string;
   role: string;
   quote: string;
-  rating: number; // 1-5
-  photoUrl?: string; // dejar vacío hasta tener la foto real (formato vertical, 3:4)
+  rating: number;
+  photoUrl?: string;
   visitsNote?: string;
   priceNote?: string;
 }
@@ -26,7 +26,10 @@ export class TestimoniesComponent {
   readonly featuredTestimonial: Testimonial = {
     name: 'Victoria Amable',
     role: 'Vendió su casa en La Planicie',
-    quote: 'Lorem ipsum dolor sit amet, consecteeet dolore magna aliquam erat volutpat. Ut wisi enim ad minim Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh eu',
+    quote: 'Confiar la venta de mi casa a Finca Verde fue la mejor decisión. Pensé que sería un proceso complicado, pero ellos se encargaron de todo. ' +
+      'Recibí visitas realmente interesadas y al final lograron vender mi casa a un muy buen precio. Siempre estuvieron pendientes de mí y resolvieron cada duda. ' +
+      'Me hicieron sentir que mi propiedad estaba en buenas manos.',
+    photoUrl: 'https://res.cloudinary.com/diahho4fm/image/upload/v1785561355/VICTORIA_AMABLE_-_VERTICAL_ewl6i2.png',
     rating: 5,
     visitsNote: '+30 visitas coordinadas',
     priceNote: 'Precio final de acuerdo al mercado'
@@ -36,19 +39,26 @@ export class TestimoniesComponent {
     {
       name: 'Rafael Ungaro',
       role: 'Alquiler en San Isidro',
-      quote: 'Lorem ipsum dolor sit amet, consecteeet dolore magna aliquam erat volutpat. Ut wisi enim ad minim Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam',
+      quote: 'Necesitábamos alquilar varias oficinas en San Isidro y buscábamos una inmobiliaria que entendiera nuestras necesidades. Finca Verde nos ' +
+        'acompañó en todo el proceso con mucha seriedad y organización. Se encargaron de encontrar a los inquilinos adecuados, coordinar cada visita ' +
+        'y mantenernos informados en todo momento. Gracias a su gestión logramos alquilar 8 oficinas de manera eficiente y sin complicaciones.',
       rating: 5
     },
     {
       name: 'Karin Barreto',
       role: 'Venta en Jesús María',
-      quote: 'Lorem ipsum dolor sit amet, consecteeet dolore magna aliquam erat volutpat. Ut wisi enim ad minim Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam',
+      quote: 'Desde el primer día sentí que mi departamento estaba en buenas manos. Tenía muchas dudas sobre el proceso de venta y los trámites, ' +
+        'pero el equipo de Finca Verde siempre estuvo dispuesto a explicarme cada paso con mucha paciencia. En solo un mes lograron vender mi ' +
+        'departamento a un excelente precio, algo que sinceramente no esperaba que sucediera tan rápido. Se encargaron de coordinar todo y me ' +
+        'acompañaron hasta el cierre de la operación. Los recomiendo por su profesionalismo, transparencia y el trato tan cercano que brindan a sus clientes.',
       rating: 5
     },
     {
       name: 'Giancarlo Tealdo',
       role: 'Venta en Lince',
-      quote: 'Lorem ipsum dolor sit amet, consecteeet dolore magna aliquam erat volutpat. Ut wisi enim ad minim Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam',
+      quote: 'Mi departamento en Lince era muy bonito y quería venderlo al mejor precio posible. Finca Verde fue honesta conmigo y me ayudó a ' +
+        'ajustar el precio para atraer compradores. Gracias a su estrategia, llegaron las visitas y concretamos la venta. Lo mejor fue la confianza ' +
+        'y el buen trato durante todo el proceso.',
       rating: 5
     }
   ];
