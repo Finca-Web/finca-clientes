@@ -42,7 +42,8 @@ export class TestimoniesComponent {
       quote: 'Necesitábamos alquilar varias oficinas en San Isidro y buscábamos una inmobiliaria que entendiera nuestras necesidades. Finca Verde nos ' +
         'acompañó en todo el proceso con mucha seriedad y organización. Se encargaron de encontrar a los inquilinos adecuados, coordinar cada visita ' +
         'y mantenernos informados en todo momento. Gracias a su gestión logramos alquilar 8 oficinas de manera eficiente y sin complicaciones.',
-      rating: 5
+      rating: 5,
+      photoUrl: 'https://res.cloudinary.com/diahho4fm/image/upload/v1785562023/RAFAEL_UNGARO_-_VERTICAL_hcyyh9.png'
     },
     {
       name: 'Karin Barreto',
@@ -51,7 +52,9 @@ export class TestimoniesComponent {
         'pero el equipo de Finca Verde siempre estuvo dispuesto a explicarme cada paso con mucha paciencia. En solo un mes lograron vender mi ' +
         'departamento a un excelente precio, algo que sinceramente no esperaba que sucediera tan rápido. Se encargaron de coordinar todo y me ' +
         'acompañaron hasta el cierre de la operación. Los recomiendo por su profesionalismo, transparencia y el trato tan cercano que brindan a sus clientes.',
-      rating: 5
+      rating: 5,
+      photoUrl: 'https://res.cloudinary.com/diahho4fm/image/upload/v1785562042/KARIN_BARRETO_-_VERTICAL_u9nnid.png'
+
     },
     {
       name: 'Giancarlo Tealdo',
@@ -59,7 +62,9 @@ export class TestimoniesComponent {
       quote: 'Mi departamento en Lince era muy bonito y quería venderlo al mejor precio posible. Finca Verde fue honesta conmigo y me ayudó a ' +
         'ajustar el precio para atraer compradores. Gracias a su estrategia, llegaron las visitas y concretamos la venta. Lo mejor fue la confianza ' +
         'y el buen trato durante todo el proceso.',
-      rating: 5
+      rating: 5,
+      photoUrl: 'https://res.cloudinary.com/diahho4fm/image/upload/v1785562062/GIANCARLO_TEALDO_-_VERTICAL_roqaz7.png'
+
     }
   ];
 
