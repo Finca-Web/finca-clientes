@@ -127,16 +127,19 @@
     </div>
     @if (property?.antique != null) {
       <div class="stat-card icon-card">
-        <span class="stat-label">ANTIGUEDAD</span>
+        <span class="stat-label">ANTIGÜEDAD</span>
         <div class="stat-icon" aria-hidden="true">
           <svg viewBox="0 0 64 64" focusable="false">
-            <g>
-              <!-- Martillo -->
-              <rect x="18" y="12" width="8" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="3"/>
-              <path d="M14 10h20v8a8 8 0 0 1-8 8h-4a8 8 0 0 1-8-8V10z" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              <!-- Mango -->
-              <path d="M22 36v14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-            </g>
+            <!-- Tapa superior e inferior -->
+            <path d="M16 10h32" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            <path d="M16 54h32" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            <!-- Cuerpo del reloj de arena -->
+            <path d="M20 10c0 9 6 13 10 14 1 .3 1 1.7 0 2-4 1-10 5-10 14"
+                  fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M44 10c0 9-6 13-10 14-1 .3-1 1.7 0 2 4 1 10 5 10 14"
+                  fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+            <!-- Caída de arena -->
+            <path d="M32 28v8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
           </svg>
         </div>
         <span class="stat-value">{{ property?.antique }} años</span>
