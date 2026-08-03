@@ -24,11 +24,31 @@ export interface ImageUploadResource {
 }
 
 export interface CreatePropertyImageRequest {
+  id?: number;
   fileName: string;
   filePath: string;
   displayOrder: number;
   cover?: boolean;
   isCover?: boolean;
+}
+
+export interface NewPropertyImageRequest {
+  fileName: string;
+  filePath: string;
+  displayOrder: number;
+  cover: boolean;
+}
+
+export interface UpdatedPropertyImageRequest {
+  imageId: number;
+  fileName: string;
+  filePath: string;
+  displayOrder: number;
+  cover: boolean;
+}
+
+export interface DeletedPropertyImageRequest {
+  imageId: number;
 }
 
 export interface CreatePropertyRequest {
@@ -38,6 +58,8 @@ export interface CreatePropertyRequest {
   department: Department;
   district: District | null;
   address: string;
+  longitude?: number | null;
+  latitude?: number | null;
   propertyType: PropertyType;
   operationType: OperationType;
   totalArea: number;
@@ -46,7 +68,7 @@ export interface CreatePropertyRequest {
   bathrooms: number | null;
   parkings: number | null;
   description: string;
-  documentationUrl: string | null;
+  antique: number | null;
   statusType: StatusType;
   featured: boolean;
   tags: Tag[];
@@ -56,7 +78,31 @@ export interface CreatePropertyRequest {
 /**
  * API request payload for updating a property.
  */
-export interface UpdatePropertyRequest extends CreatePropertyRequest {}
+export interface UpdatePropertyRequest {
+  title: string;
+  priceDollars: number;
+  priceSoles: number | null;
+  department: Department;
+  district: District | null;
+  address: string;
+  longitude?: number | null;
+  latitude?: number | null;
+  propertyType: PropertyType;
+  operationType: OperationType;
+  totalArea: number;
+  builtArea: number;
+  bedrooms: number | null;
+  bathrooms: number | null;
+  parkings: number | null;
+  description: string;
+  antique: number | null;
+  statusType: StatusType;
+  featured: boolean;
+  tags: Tag[];
+  newImages: NewPropertyImageRequest[];
+  updatedImages: UpdatedPropertyImageRequest[];
+  deletedImages: DeletedPropertyImageRequest[];
+}
 
 /**
  * API resource/DTO for a property.
@@ -68,6 +114,8 @@ export interface PropertyResource extends BaseResource {
   department: Department;
   district: District | null;
   address: string;
+  longitude : number | null;
+  latitude : number | null;
   propertyType: PropertyType;
   operationType: OperationType;
   totalArea: number;
@@ -76,7 +124,7 @@ export interface PropertyResource extends BaseResource {
   bathrooms: number | null;
   parkings: number | null;
   description: string;
-  documentationUrl: string | null;
+  antique: number | null;
   publishedAt: string | null;
   statusType: StatusType;
   featured: boolean;
@@ -126,4 +174,3 @@ export interface PropertySearchParams {
   size?: number;
   sort?: string;
 }
-

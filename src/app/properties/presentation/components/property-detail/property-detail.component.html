@@ -125,6 +125,23 @@
       </div>
       <span class="stat-value">{{ property?.parkings ?? 0 }}</span>
     </div>
+    @if (property?.antique != null) {
+      <div class="stat-card icon-card">
+        <span class="stat-label">ANTIGUEDAD</span>
+        <div class="stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" focusable="false">
+            <g>
+              <!-- Martillo -->
+              <rect x="18" y="12" width="8" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="3"/>
+              <path d="M14 10h20v8a8 8 0 0 1-8 8h-4a8 8 0 0 1-8-8V10z" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Mango -->
+              <path d="M22 36v14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
+        <span class="stat-value">{{ property?.antique }} años</span>
+      </div>
+    }
   </div>
 
   <section class="property-description">
