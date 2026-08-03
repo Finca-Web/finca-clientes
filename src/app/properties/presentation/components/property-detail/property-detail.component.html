@@ -130,16 +130,18 @@
         <span class="stat-label">ANTIGÜEDAD</span>
         <div class="stat-icon" aria-hidden="true">
           <svg viewBox="0 0 64 64" focusable="false">
-            <!-- Tapa superior e inferior -->
+            <!-- Tapa superior -->
             <path d="M16 10h32" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            <!-- Tapa inferior -->
             <path d="M16 54h32" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-            <!-- Cuerpo del reloj de arena -->
-            <path d="M20 10c0 9 6 13 10 14 1 .3 1 1.7 0 2-4 1-10 5-10 14"
+            <!-- Contorno izquierdo -->
+            <path d="M20 10c0 10 6 16 12 22c-6 6-12 12-12 22"
                   fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
-            <path d="M44 10c0 9-6 13-10 14-1 .3-1 1.7 0 2 4 1 10 5 10 14"
+            <!-- Contorno derecho -->
+            <path d="M44 10c0 10-6 16-12 22c6 6 12 12 12 22"
                   fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
             <!-- Caída de arena -->
-            <path d="M32 28v8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <path d="M32 30v4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
           </svg>
         </div>
         <span class="stat-value">{{ property?.antique }} años</span>
