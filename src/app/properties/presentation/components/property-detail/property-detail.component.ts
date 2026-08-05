@@ -73,6 +73,14 @@ export class PropertyDetailComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(this.property?.description ?? '');
   }
 
+  get whatsappLink(): string {
+    const propertyUrl = typeof window !== 'undefined' ? window.location.href : '';
+    const message = `Hola, quisiera información sobre la siguiente propiedad:\n${propertyUrl}`;
+    return `https://wa.me/51923529731?text=${encodeURIComponent(message)}`;
+  }
+
+
+
   showPrevious(): void {
     if (this.imageUrls.length === 0) {
       return;
