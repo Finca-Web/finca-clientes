@@ -9,8 +9,13 @@
   </div>
 
   <div class="property-gallery" aria-label="Galería de imágenes">
-    <div class="gallery-badge">
-      {{ property?.operationType === 'RENT' ? 'EN ALQUILER' : 'EN VENTA' }}
+    <div class="gallery-badges">
+      @if (property?.operationType === 'RENT' || property?.operationType === 'BOTH') {
+        <div class="gallery-badge">EN ALQUILER</div>
+      }
+      @if (property?.operationType === 'SALE' || property?.operationType === 'BOTH') {
+        <div class="gallery-badge">EN VENTA</div>
+      }
     </div>
 
     <button type="button" class="gallery-expand-btn" aria-label="Ver en tamaño completo" (click)="openFullscreen()">

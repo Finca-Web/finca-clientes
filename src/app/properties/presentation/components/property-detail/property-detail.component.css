@@ -112,10 +112,17 @@
   line-height: 0;
 }
 
-.gallery-badge {
+.gallery-badges {
   position: absolute;
   top: 16px;
   left: 16px;
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.gallery-badge {
   padding: 10px 16px;
   border-radius: 999px;
   background: rgba(0, 87, 63, 0.85);
@@ -125,7 +132,6 @@
   font-size: 14px;
   letter-spacing: 0.6px;
   text-transform: uppercase;
-  z-index: 2;
 }
 
 .gallery-image {
@@ -348,9 +354,12 @@
     aspect-ratio: 4 / 3;
   }
 
-  .gallery-badge {
+  .gallery-badges {
     top: 10px;
     left: 10px;
+  }
+
+  .gallery-badge {
     font-size: 12px;
     padding: 8px 12px;
   }
