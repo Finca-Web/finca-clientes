@@ -64,7 +64,7 @@
   flex: 1 1 0;
   min-width: 0;
   max-width: 170px;
-  height: 140px;
+  height: 175px;
   box-sizing: border-box;
 }
 
@@ -369,7 +369,7 @@
   .stat-card {
     flex: 0 1 calc(50% - 6px);
     max-width: 168px;
-    height: 122px;
+    height: 142px;
     padding: 12px;
   }
 
