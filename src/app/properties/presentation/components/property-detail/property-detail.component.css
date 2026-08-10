@@ -13,12 +13,28 @@
   background: #00573F;
   border-radius: 18px;
   padding: 16px 22px;
+  margin-bottom: 12px;
+  width: calc(100% + 24px);
+  margin-left: -12px;
+  margin-right: -12px;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+.property-price-card {
+  background: #F4F5E7;
+  border: 1px solid rgba(0, 87, 63, 0.15);
+  border-radius: 18px;
+  padding: 16px 22px;
   margin-bottom: 24px;
   width: calc(100% + 24px);
   margin-left: -12px;
   margin-right: -12px;
   max-width: none;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .property-title {
@@ -36,7 +52,12 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   font-size: 22px;
-  color: #ffffff;
+  color: #00573F;
+}
+
+.price-label {
+  font-weight: 700;
+  margin-right: 6px;
 }
 
 .property-media {
@@ -336,6 +357,12 @@
   }
 
   .property-title-card {
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+  }
+
+  .property-price-card {
     border-radius: 14px;
     padding: 14px 16px;
     margin-bottom: 16px;
