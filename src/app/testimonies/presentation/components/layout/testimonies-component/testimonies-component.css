@@ -37,9 +37,9 @@
 }
 
 .hero-divider__icon {
-  width: 20px;
-  height: 20px;
-  color: var(--tv-heading-green);
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 
 .hero-title {

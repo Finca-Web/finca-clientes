@@ -45,24 +45,27 @@
 
 .stats-row {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   margin-top: 24px;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .stat-card {
   background: #1E5A43;
   border-radius: 18px;
-  padding: 16px;
+  padding: 14px 10px;
   color: #E6E5D3;
   font-family: 'Montserrat', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
-  width: 140px;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 170px;
   height: 140px;
+  box-sizing: border-box;
 }
 
 .stat-card.icon-card {
@@ -190,10 +193,13 @@
   left: auto;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 900px) {
   .stats-row {
+    gap: 10px;
+    margin-top: 16px;
     flex-wrap: wrap;
   }
+
 }
 
 .property-description {
@@ -361,7 +367,7 @@
   }
 
   .stat-card {
-    width: calc(50% - 6px);
+    flex: 0 1 calc(50% - 6px);
     max-width: 168px;
     height: 122px;
     padding: 12px;
@@ -395,10 +401,6 @@
 }
 
 @media (max-width: 480px) {
-  .stat-card {
-    width: 100%;
-    max-width: none;
-  }
 
   .property-gallery {
     aspect-ratio: 1 / 1;
