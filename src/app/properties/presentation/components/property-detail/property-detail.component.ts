@@ -65,6 +65,8 @@ export class PropertyDetailComponent implements OnInit {
     });
   }
 
+
+
   get currentImageUrl(): string {
     return this.imageUrls[this.currentIndex] ?? '/assets/HomeArt.png';
   }
@@ -78,6 +80,8 @@ export class PropertyDetailComponent implements OnInit {
     const message = `Hola, quisiera información sobre la siguiente propiedad:\n${propertyUrl}`;
     return `https://wa.me/51923529731?text=${encodeURIComponent(message)}`;
   }
+
+
 
 
 

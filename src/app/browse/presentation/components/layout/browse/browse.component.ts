@@ -86,6 +86,7 @@ export class BrowseComponent implements OnInit {
   };
 
   priceAscending = true;
+  isLoading = false;
 
   constructor(
     private readonly propertiesService: PropertiesService,
@@ -129,27 +130,29 @@ export class BrowseComponent implements OnInit {
 
 
   loadProperties(): void {
-
     this.propertiesService.search(this.searchParams)
       .subscribe({
-        next: (response) => {
-          this.properties.length = 0;
-          this.properties.push(...response);
+      next: (response) => {
+        this.properties.length = 0;
+        this.properties.push(...response);
 
-          this.properties.sort((a, b) => {
+        this.properties.sort((a, b) => {
 
-            if (this.priceAscending) {
-              return a.priceDollars - b.priceDollars;
-            }
+          if (this.priceAscending) {
+            return a.priceDollars - b.priceDollars;
+          }
 
-            return b.priceDollars - a.priceDollars;
-          });
-        },
-        error: (err) => {
-          console.error('Error al cargar propiedades:', err);
-          this.properties.length = 0;
-        }
-      });
+          return b.priceDollars - a.priceDollars;
+        });
+
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Error al cargar propiedades:', err);
+        this.properties.length = 0;
+        this.isLoading = false;
+      }
+    });
   }
 
   onSearch(): void {

@@ -181,27 +181,35 @@
 
 <section class="browse-results-section">
   <div class="results-container">
-    <div class="properties-grid-layout">
-      @for (property of properties; track property.id) {
-        <mat-card class="property-card" [routerLink]="['/properties', property.id]">
-          <div class="image-wrapper">
-            <img [src]="getCoverImage(property)" [alt]="property.title">
-            <div class="overlay">
-              <div class="price-tag">{{ property.priceDollars | currency:'USD':'symbol':'1.0-0' }}</div>
-              <div class="overlay-bottom">
-                <h3>{{ property.title }}</h3>
-                <p>{{ property.bedrooms }} Hab · {{ property.totalArea }} m²</p>
+
+    @if (isLoading) {
+      <div class="loading-state">
+        <div class="loading-ring"></div>
+      </div>
+    } @else {
+      <div class="properties-grid-layout">
+        @for (property of properties; track property.id) {
+          <mat-card class="property-card" [routerLink]="['/properties', property.id]">
+            <div class="image-wrapper">
+              <img [src]="getCoverImage(property)" [alt]="property.title">
+              <div class="overlay">
+                <div class="price-tag">{{ property.priceDollars | currency:'USD':'symbol':'1.0-0' }}</div>
+                <div class="overlay-bottom">
+                  <h3>{{ property.title }}</h3>
+                  <p>{{ property.bedrooms }} Hab · {{ property.totalArea }} m²</p>
+                </div>
               </div>
             </div>
+          </mat-card>
+        } @empty {
+          <div class="no-results">
+            <mat-icon>search_off</mat-icon>
+            <p>No se encontraron propiedades con estos criterios.</p>
           </div>
-        </mat-card>
-      } @empty {
-        <div class="no-results">
-          <mat-icon>search_off</mat-icon>
-          <p>No se encontraron propiedades con estos criterios.</p>
-        </div>
-      }
-    </div>
+        }
+      </div>
+    }
+
   </div>
 </section>
 
