@@ -64,10 +64,10 @@ export class BrowseComponent implements OnInit {
   isDepartmentDropdownOpen = false;
   isDistrictDropdownOpen = false;
 
-  operationTypePlaceholder!: OperationType;
-  propertyTypePlaceholder!: PropertyType;
-  departmentPlaceholder!: Department;
-  districtPlaceholder!: District | null;
+  operationTypePlaceholder: OperationType | null = null;
+  propertyTypePlaceholder: PropertyType | null = null;
+  departmentPlaceholder: Department | null = null;
+  districtPlaceholder: District | null = null;
 
   // ============================
   // DATA
@@ -113,13 +113,13 @@ export class BrowseComponent implements OnInit {
       // Inicializamos placeholders para mostrar los filtros seleccionados
 
       this.operationTypePlaceholder =
-        this.searchParams.operationType ?? OperationType.RENT;
+        this.searchParams.operationType ?? null;
 
       this.propertyTypePlaceholder =
-        this.searchParams.propertyType ?? PropertyType.HOUSE;
+        this.searchParams.propertyType ?? null;
 
       this.departmentPlaceholder =
-        this.searchParams.department ?? Department.LIMA;
+        this.searchParams.department ?? null;
 
       this.districtPlaceholder =
         this.searchParams.district ?? null;

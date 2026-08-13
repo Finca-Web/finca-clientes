@@ -13,9 +13,13 @@
           class="browse-search-pill"
           (click)="toggleOperationDropdown()">
 
-      <span>
-        {{ operationTypeLabel[operationTypePlaceholder] }}
-      </span>
+<span>
+  {{
+    operationTypePlaceholder
+      ? operationTypeLabel[operationTypePlaceholder]
+      : 'Operación'
+  }}
+</span>
 
           <mat-icon>keyboard_arrow_down</mat-icon>
         </div>
@@ -43,9 +47,13 @@
           class="browse-search-pill"
           (click)="togglePropertyDropdown()">
 
-      <span>
-        {{ propertyTypeLabel[propertyTypePlaceholder] }}
-      </span>
+<span>
+  {{
+    propertyTypePlaceholder
+      ? propertyTypeLabel[propertyTypePlaceholder]
+      : 'Tipo de Propiedad'
+  }}
+</span>
 
           <mat-icon>keyboard_arrow_down</mat-icon>
         </div>
@@ -73,9 +81,13 @@
           class="browse-search-pill"
           (click)="toggleDepartmentDropdown()">
 
-      <span>
-        {{ departmentLabel[departmentPlaceholder] }}
-      </span>
+<span>
+  {{
+    departmentPlaceholder
+      ? departmentLabel[departmentPlaceholder]
+      : 'Departamento'
+  }}
+</span>
 
           <mat-icon>keyboard_arrow_down</mat-icon>
         </div>
