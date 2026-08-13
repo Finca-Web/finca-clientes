@@ -130,6 +130,8 @@ export class BrowseComponent implements OnInit {
 
 
   loadProperties(): void {
+    this.isLoading = true;
+
     this.propertiesService.search(this.searchParams)
       .subscribe({
       next: (response) => {
