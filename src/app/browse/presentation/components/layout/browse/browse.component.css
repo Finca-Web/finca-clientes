@@ -152,6 +152,27 @@ input.search-pill {
 .overlay-bottom h3 { margin: 0; font-size: 1.2rem; }
 .no-results { grid-column: 1 / -1; text-align: center; padding: 50px; color: #888; }
 
+.loading-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+}
+
+.loading-ring {
+  width: 56px;
+  height: 56px;
+  border: 5px solid rgba(0, 87, 63, 0.15);
+  border-top-color: #00573F;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 .browse-search-pill {
   background-color: #FFFFFF;
 
@@ -172,6 +193,30 @@ input.search-pill {
   cursor: pointer;
 
   box-shadow: 0 4px 10px rgba(0,0,0,.05);
+}
+
+.price-filter-input {
+  background-color: #FFFFFF;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  padding: 0 20px;
+  height: 55px;
+  width: 140px;
+  color: #00573F;
+  font-size: 16px;
+  font-family: inherit;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  outline: none;
+  transition: border-color .2s ease;
+}
+
+.price-filter-input::placeholder {
+  color: #00573F;
+  opacity: 0.55;
+}
+
+.price-filter-input:focus {
+  border-color: #00573F;
 }
 
 .dropdown-container {
@@ -265,30 +310,6 @@ input.search-pill {
     align-items: stretch;
   }
 
-  .dropdown-container,
-  .browse-search-pill,
-  .price-sort-button,
-  .search-button,
-  .advanced-filters-btn {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .browse-search-pill,
-  .price-sort-button,
-  .search-button,
-  .advanced-filters-btn {
-    height: 48px;
-    font-size: 15px;
-    border-radius: 16px;
-  }
-
-  .advanced-panel-container {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    padding: 14px;
-    border-radius: 18px;
-  }
 
   .input-row {
     flex-wrap: wrap;

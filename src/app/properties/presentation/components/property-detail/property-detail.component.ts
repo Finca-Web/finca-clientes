@@ -10,12 +10,13 @@ import {FooterContentComponent} from '../../../../shared/presentation/components
 import { Tag } from '../../../domain/model/enums/Tag.enum';
 import { TagCategory } from '../../../domain/model/enums/TagCategory.enum';
 import { TagMetadata } from '../../../domain/model/enums/TagMetadata';
-import { CommonModule } from '@angular/common'; // Import CommonModule
+import { CommonModule } from '@angular/common';
+import {MatIcon} from '@angular/material/icon'; // Import CommonModule
 
 @Component({
   selector: 'app-property-detail',
   standalone: true,
-  imports: [CommonModule, HeaderContentComponent, FooterContentComponent], // Add CommonModule here
+  imports: [CommonModule, HeaderContentComponent, FooterContentComponent, MatIcon], // Add CommonModule here
   templateUrl: './property-detail.component.html',
   styleUrl: './property-detail.component.css'
 })
@@ -24,6 +25,7 @@ export class PropertyDetailComponent implements OnInit {
   imageUrls: string[] = [];
   currentIndex = 0;
   isTransitioning = false;
+  isFullscreen = false;
   transitionDirection: 'left' | 'right' | null = null;
   property: PropertyEntity | null = null;
   groupedTags: { category: string; tags: string[] }[] = [];
@@ -63,6 +65,8 @@ export class PropertyDetailComponent implements OnInit {
     });
   }
 
+
+
   get currentImageUrl(): string {
     return this.imageUrls[this.currentIndex] ?? '/assets/HomeArt.png';
   }
@@ -70,6 +74,16 @@ export class PropertyDetailComponent implements OnInit {
   get sanitizedDescription(): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(this.property?.description ?? '');
   }
+
+  get whatsappLink(): string {
+    const propertyUrl = typeof window !== 'undefined' ? window.location.href : '';
+    const message = `Hola, quisiera información sobre la siguiente propiedad:\n${propertyUrl}`;
+    return `https://wa.me/51923529731?text=${encodeURIComponent(message)}`;
+  }
+
+
+
+
 
   showPrevious(): void {
     if (this.imageUrls.length === 0) {
@@ -87,6 +101,14 @@ export class PropertyDetailComponent implements OnInit {
 
     this.animateTransition('right');
     this.currentIndex = (this.currentIndex + 1) % this.imageUrls.length;
+  }
+
+  openFullscreen(): void {
+    this.isFullscreen = true;
+  }
+
+  closeFullscreen(): void {
+    this.isFullscreen = false;
   }
 
   private animateTransition(direction: 'left' | 'right'): void {

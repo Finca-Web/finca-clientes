@@ -34,9 +34,9 @@
 
 .hero-image {
   position: absolute;
-  right: 0;
+  right: -80px;
   bottom: -60px;
-  width: 600px;
+  width: 690px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -70,7 +70,7 @@
   .hero-image {
     position: static;
     width: 100%;
-    max-width: 420px;
+    max-width: 483px;
     margin: 0 auto;
   }
 }
@@ -245,6 +245,34 @@
   border: 0;
 }
 
+/* ==========================================================
+   TIKTOK EMBED — video suelto, sin el marco verde de YouTube
+   Sobrescribe .video-wrapper para el video de TikTok:
+   sin fondo, sin borde, y con las dimensiones nativas
+   verticales de TikTok en vez del aspect-ratio 16:9.
+   ========================================================== */
+.video-wrapper.tiktok-wrapper {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  aspect-ratio: auto;
+  width: auto;
+  max-width: 605px;
+  min-height: 739px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  margin: 0 auto;
+}
+
+.tiktok-embed {
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0 auto;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
 @media (max-width: 992px) {
   .contact-section {
     grid-template-columns: 1fr;
@@ -295,7 +323,7 @@
   }
 
   .hero-image {
-    max-width: 320px;
+    max-width: 368px;
   }
 
   .contact-section {
@@ -326,6 +354,11 @@
 
   .video-section {
     padding: 26px 14px;
+  }
+
+  .video-wrapper.tiktok-wrapper {
+    max-width: 325px;
+    min-height: 650px;
   }
 
 }

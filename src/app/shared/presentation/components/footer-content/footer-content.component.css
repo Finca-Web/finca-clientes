@@ -166,6 +166,11 @@
   stroke: none;
 }
 
+.social-icons svg.icon-facebook {
+  fill: #E6E5D3;
+  stroke: none;
+}
+
 .icon-tiktok:hover {
   transform: translateY(-4px);
   opacity: 0.8;

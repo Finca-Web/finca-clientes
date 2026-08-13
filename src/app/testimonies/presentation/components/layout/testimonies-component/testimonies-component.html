@@ -1,0 +1,184 @@
+<app-header-content></app-header-content>
+
+<section class="testimonies-page">
+
+  <header class="testimonies-hero">
+    <div class="hero-divider" aria-hidden="true">
+      <span class="hero-divider__line"></span>
+      <img
+        class="hero-divider__icon"
+        src="/LLAVE%20VERDE.png"
+        alt=""
+        aria-hidden="true"
+      />
+      <span class="hero-divider__line"></span>
+    </div>
+
+    <h1 class="hero-title">
+      <span class="hero-title__light">Nuestros clientes</span>
+      <span class="hero-title__bold">lo cuentan mejor</span>
+    </h1>
+    <p class="hero-subtitle">
+      Conoce la experiencia de propietarios que confiaron en nosotros para vender o alquilar sus inmuebles
+    </p>
+  </header>
+
+  <article class="featured-card">
+    <div class="featured-card__photo photo-frame">
+      @if (featuredTestimonial.photoUrl) {
+        <img [src]="featuredTestimonial.photoUrl" [alt]="featuredTestimonial.name" />
+      } @else {
+        <div class="photo-frame__placeholder" role="img" [attr.aria-label]="'Foto de ' + featuredTestimonial.name">
+          <svg viewBox="0 0 24 24" class="photo-frame__icon">
+            <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+      }
+    </div>
+
+    <div class="featured-card__content">
+      <div class="rating" aria-hidden="true">
+        @for (star of ratingStars; track star) {
+          <svg class="rating__star" [class.rating__star--filled]="star < featuredTestimonial.rating" viewBox="0 0 24 24">
+            <path d="M12 2.5l2.9 6.2 6.6.7-4.9 4.6 1.3 6.6L12 17.6 6.1 20.6l1.3-6.6-4.9-4.6 6.6-.7z"/>
+          </svg>
+        }
+      </div>
+
+      <p class="featured-card__quote">{{ featuredTestimonial.quote }}</p>
+
+      <div class="featured-card__author">
+        <span class="author-name">{{ featuredTestimonial.name }}</span>
+        <span class="author-role">{{ featuredTestimonial.role }}</span>
+      </div>
+
+      @if (featuredTestimonial.visitsNote || featuredTestimonial.priceNote) {
+        <div class="featured-card__meta">
+          @if (featuredTestimonial.visitsNote) {
+            <div class="meta-item">
+              <svg class="meta-item__icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="3.4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M5 20c0-3.6 3-5.8 7-5.8s7 2.2 7 5.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+              <span>{{ featuredTestimonial.visitsNote }}</span>
+            </div>
+          }
+          @if (featuredTestimonial.priceNote) {
+            <div class="meta-item">
+              <svg class="meta-item__icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M8 12.5l2.5 2.5L16 9.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>{{ featuredTestimonial.priceNote }}</span>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </article>
+
+  <div class="secondary-grid">
+    @for (testimonial of secondaryTestimonials; track testimonial.name) {
+      <article class="secondary-card">
+        <div class="secondary-card__photo photo-frame photo-frame--small">
+          @if (testimonial.photoUrl) {
+            <img [src]="testimonial.photoUrl" [alt]="testimonial.name" />
+          } @else {
+            <div class="photo-frame__placeholder" role="img" [attr.aria-label]="'Foto de ' + testimonial.name">
+              <svg viewBox="0 0 24 24" class="photo-frame__icon">
+                <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+          }
+        </div>
+
+        <div class="rating rating--small" aria-hidden="true">
+          @for (star of ratingStars; track star) {
+            <svg class="rating__star" [class.rating__star--filled]="star < testimonial.rating" viewBox="0 0 24 24">
+              <path d="M12 2.5l2.9 6.2 6.6.7-4.9 4.6 1.3 6.6L12 17.6 6.1 20.6l1.3-6.6-4.9-4.6 6.6-.7z"/>
+            </svg>
+          }
+        </div>
+
+        <p class="secondary-card__quote">{{ testimonial.quote }}</p>
+
+        <div class="secondary-card__author">
+          <span class="author-name">{{ testimonial.name }}</span>
+          <span class="author-role">{{ testimonial.role }}</span>
+        </div>
+      </article>
+    }
+  </div>
+
+  <section class="stats-band" aria-label="Resultados">
+    <h2 class="stats-band__title">Resultados que respaldan nuestra experiencia</h2>
+
+    <div class="stats-band__row">
+      <div class="stats-band__item">
+        <svg class="stats-band__icon" viewBox="0 0 24 24">
+          <circle cx="12" cy="9" r="5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M8.5 13.5L7 21l5-2.5 5 2.5-1.5-7.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        <span class="stats-band__value">+8 <span class="stats-band__unit">años</span></span>
+        <span class="stats-band__label">de experiencia</span>
+      </div>
+
+      <span class="stats-band__divider" aria-hidden="true"></span>
+
+      <div class="stats-band__item">
+        <svg class="stats-band__icon" viewBox="0 0 24 24">
+          <path d="M4 11l8-6.5 8 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 10v9h12v-9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        <span class="stats-band__value">+50</span>
+        <span class="stats-band__label">propiedades gestionadas</span>
+      </div>
+
+      <span class="stats-band__divider" aria-hidden="true"></span>
+
+      <div class="stats-band__item">
+        <svg class="stats-band__icon" viewBox="0 0 24 24">
+          <path d="M8 21V11l4-8 1.4 1.4-1.1 5.1H19a2 2 0 0 1 1.9 2.7l-2.2 6A2 2 0 0 1 16.8 21H8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M8 11H4v10h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        </svg>
+        <span class="stats-band__value">95%</span>
+        <span class="stats-band__label">de clientes nos recomiendan</span>
+      </div>
+
+      <span class="stats-band__divider" aria-hidden="true"></span>
+
+      <div class="stats-band__item">
+        <svg class="stats-band__icon" viewBox="0 0 24 24">
+          <path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          <circle cx="12" cy="9.5" r="2.3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+        <span class="stats-band__value">Lima top</span>
+        <span class="stats-band__label">especialistas en los mejores distritos</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="cta-banner__icon-circle" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
+        <path d="M4 11l8-6.5 8 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6 10v9h12v-9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="cta-banner__text">
+      <h3>¿Quieres vender tu propiedad con tranquilidad?</h3>
+      <p>Agenda una asesoría personalizada y conoce cómo podemos ayudarte.</p>
+    </div>
+    <a class="cta-banner__button" href="https://wa.me/51923529731?text=Hola,%20me%20gustaria%20agendar%20una%20asesoria" target="_blank" rel="noopener">      <svg viewBox="0 0 24 24" class="cta-banner__button-icon">
+        <path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z" fill="currentColor"/>
+        <path d="M8.5 7.6c.3-.6.6-.6.9-.6h.6c.2 0 .5 0 .7.5.3.6.9 2 1 2.1.1.2.1.4 0 .6-.1.2-.2.3-.4.5-.2.2-.4.4-.2.7.3.5 1 1.4 2.2 2.2 1.5 1 1.7.8 2 .5.2-.2.7-.8.9-1.1.2-.3.4-.2.7-.1.3.1 1.9.9 2.2 1.1.3.1.5.2.6.3.1.2.1 1-.3 1.9-.4.9-2.1 1.7-2.9 1.7-.8.1-1.5.1-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4z" fill="#00573F"/>
+      </svg>
+      Agenda tu asesoría
+    </a>
+  </section>
+
+</section>
+
+<app-footer-content></app-footer-content>

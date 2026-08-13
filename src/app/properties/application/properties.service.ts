@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable} from  'rxjs';
+import {Observable} from 'rxjs';
 import {PropertyEntity} from '../domain/model/Property.entity';
 import {
   CreatePropertyRequest,
@@ -38,7 +38,7 @@ export class PropertiesService {
   }
 
   update(id: number, request: UpdatePropertyRequest): Observable<PropertyEntity> {
-    return (this.propertiesApiEndpoint as any).updateProperty(id, request);
+    return this.propertiesApiEndpoint.updateProperty(id, request);
   }
 
   deleteById(id: number): Observable<void> {

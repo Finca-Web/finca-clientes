@@ -12,9 +12,13 @@ export interface PropertyEntityProps {
   title: string;
   priceDollars: number;
   priceSoles?: number | null;
+  secondPriceDollars?: number | null;
+  secondPriceSoles?: number | null;
   department: Department;
   district?: District | null;
   address: string;
+  longitude : number | null;
+  latitude : number | null;
   propertyType: PropertyType;
   operationType: OperationType;
   totalArea: number;
@@ -23,7 +27,7 @@ export interface PropertyEntityProps {
   bathrooms?: number | null;
   parkings?: number | null;
   description: string;
-  documentationUrl?: string | null;
+  antique?: number | null;
   publishedAt?: string | Date | null;
   statusType: StatusType;
   featured: boolean;
@@ -36,9 +40,13 @@ export class PropertyEntity {
   title: string;
   priceDollars: number;
   priceSoles: number | null;
+  secondPriceDollars: number | null;
+  secondPriceSoles: number | null;
   department: Department;
   district: District | null;
   address: string;
+  longitude : number | null;
+  latitude : number | null;
   propertyType: PropertyType;
   operationType: OperationType;
   totalArea: number;
@@ -47,7 +55,7 @@ export class PropertyEntity {
   bathrooms: number | null;
   parkings: number | null;
   description: string;
-  documentationUrl: string | null;
+  antique: number | null;
   publishedAt: Date | null;
   statusType: StatusType;
   featured: boolean;
@@ -60,9 +68,13 @@ export class PropertyEntity {
     this.title = props.title;
     this.priceDollars = props.priceDollars;
     this.priceSoles = props.priceSoles ?? null;
+    this.secondPriceDollars = props.secondPriceDollars ?? null;
+    this.secondPriceSoles = props.secondPriceSoles ?? null;
     this.department = props.department;
     this.district = props.district ?? null;
     this.address = props.address;
+    this.longitude = props.longitude ?? null;
+    this.latitude = props.latitude ?? null;
     this.propertyType = props.propertyType;
     this.operationType = props.operationType;
     this.totalArea = props.totalArea;
@@ -71,9 +83,8 @@ export class PropertyEntity {
     this.bathrooms = props.bathrooms ?? null;
     this.parkings = props.parkings ?? null;
     this.description = props.description;
-    this.documentationUrl = props.documentationUrl ?? null;
+    this.antique = props.antique ?? null;
 
-    // 🔥 conversión correcta
     this.publishedAt = props.publishedAt
       ? new Date(props.publishedAt)
       : null;
@@ -153,7 +164,6 @@ export class PropertyEntity {
       throw new Error('Price in soles must be > 0');
     }
 
-    // 🔥 VALIDACIÓN CLAVE IGUAL QUE BACKEND
     if (this.department === Department.LIMA && !this.district) {
       throw new Error('District is required when department is Lima');
     }
@@ -167,9 +177,7 @@ export class PropertyEntity {
 
     if (this.totalArea <= 0) throw new Error('Total area must be > 0');
     if (this.builtArea <= 0) throw new Error('Built area must be > 0');
-    if (this.builtArea > this.totalArea) {
-      throw new Error('Built area cannot exceed total area');
-    }
+
 
     if (this.bedrooms !== null && this.bedrooms < 0) throw new Error('Bedrooms cannot be negative');
     if (this.bathrooms !== null && this.bathrooms < 0) throw new Error('Bathrooms cannot be negative');

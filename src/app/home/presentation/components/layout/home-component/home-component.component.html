@@ -192,7 +192,9 @@
           <span aria-hidden="true">&lt;</span>
         </button>
 
-        <div class="cards-grid">
+        <div class="cards-grid"
+             [class.slide-left]="isCardsTransitioning && cardsTransitionDirection === 'left'"
+             [class.slide-right]="isCardsTransitioning && cardsTransitionDirection === 'right'">
           @for (property of visibleProperties; track property.id; let idx = $index) {
             <mat-card
               class="property-card"
