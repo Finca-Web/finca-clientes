@@ -174,6 +174,30 @@ input.search-pill {
   box-shadow: 0 4px 10px rgba(0,0,0,.05);
 }
 
+.price-filter-input {
+  background-color: #FFFFFF;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  padding: 0 20px;
+  height: 55px;
+  width: 140px;
+  color: #00573F;
+  font-size: 16px;
+  font-family: inherit;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  outline: none;
+  transition: border-color .2s ease;
+}
+
+.price-filter-input::placeholder {
+  color: #00573F;
+  opacity: 0.55;
+}
+
+.price-filter-input:focus {
+  border-color: #00573F;
+}
+
 .dropdown-container {
   position: relative;
 }
@@ -265,30 +289,6 @@ input.search-pill {
     align-items: stretch;
   }
 
-  .dropdown-container,
-  .browse-search-pill,
-  .price-sort-button,
-  .search-button,
-  .advanced-filters-btn {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .browse-search-pill,
-  .price-sort-button,
-  .search-button,
-  .advanced-filters-btn {
-    height: 48px;
-    font-size: 15px;
-    border-radius: 16px;
-  }
-
-  .advanced-panel-container {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    padding: 14px;
-    border-radius: 18px;
-  }
 
   .input-row {
     flex-wrap: wrap;

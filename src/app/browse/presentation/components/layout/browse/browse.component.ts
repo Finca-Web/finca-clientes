@@ -85,7 +85,6 @@ export class BrowseComponent implements OnInit {
     tags: []
   };
 
-  showAdvanced = false;
   priceAscending = true;
 
   constructor(
@@ -309,9 +308,5 @@ export class BrowseComponent implements OnInit {
     } else {
       this.searchParams.tags.push(tag);
     }
-  }
-
-  isTagSelected(tag: any): boolean {
-    return this.searchParams.tags?.includes(tag) ?? false;
   }
 }

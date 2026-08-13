@@ -195,17 +195,5 @@
     </div>
   </div>
 
-  <div *ngIf="property && groupedTags.length > 0" class="tags-section">
-    <div *ngFor="let group of groupedTags">
-      <h3 class="tag-category-title">{{ group.category }}</h3>
-      <div class="tag-list">
-        <span *ngFor="let tag of group.tags" class="tag-item">
-          {{ tag }}
-        </span>
-      </div>
-    </div>
-  </div>
-
-
 </section>
 <app-footer-content></app-footer-content>
