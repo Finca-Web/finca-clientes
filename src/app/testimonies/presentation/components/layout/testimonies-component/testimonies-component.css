@@ -30,15 +30,15 @@
 }
 
 .hero-divider__line {
-  width: 56px;
+  width: 64px;
   height: 1px;
   background: var(--tv-heading-green);
   opacity: 0.5;
 }
 
 .hero-divider__icon {
-  width: 30px;
-  height: 30px;
+  width: 45px;
+  height: 45px;
   object-fit: contain;
 }
 
@@ -351,6 +351,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  white-space: nowrap;
   background: var(--tv-dark-green);
   color: #FFFFFF;
   font-weight: 700;
@@ -369,6 +370,8 @@
 .cta-banner__button-icon {
   width: 20px;
   height: 20px;
+  flex-shrink: 0;
+  aspect-ratio: 1 / 1;
 }
 
 @media (max-width: 1024px) {
