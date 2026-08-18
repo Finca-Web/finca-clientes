@@ -423,5 +423,7 @@
   .cta-banner__button {
     width: 100%;
     justify-content: center;
+    padding: 12px 18px;
+    font-size: 13px;
   }
 }
