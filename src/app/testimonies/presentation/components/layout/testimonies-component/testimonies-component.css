@@ -347,6 +347,7 @@
 }
 
 .cta-banner__button {
+  box-sizing: border-box;
   flex: none;
   display: inline-flex;
   align-items: center;
