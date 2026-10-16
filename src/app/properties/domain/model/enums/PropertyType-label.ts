@@ -8,4 +8,5 @@ export const PropertyTypeLabel : Record<PropertyType, string> = {
   [PropertyType.COMMERCIAL]: 'Local Comercial',
   [PropertyType.OFFICE]: 'Oficina',
   [PropertyType.INDUSTRIAL]: 'Industrial',
+  [PropertyType.HOTEL]: 'Hotel',
 }

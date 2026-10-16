@@ -6,4 +6,5 @@ export enum PropertyType {
   COMMERCIAL = 'COMMERCIAL',
   OFFICE = 'OFFICE',
   INDUSTRIAL = 'INDUSTRIAL',
+  HOTEL = 'HOTEL',
 }
